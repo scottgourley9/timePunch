@@ -1,0 +1,54 @@
+<section style="color: white"class="viewBody animated fadeInLeft">
+  <section class="newRequestTypeButtons"ng-hide="mainPageButtons">
+    <button class="backButton"style="height: 20vh; width: 80vw; font-size: 10vh"type="button" name="button" ng-click="showNew()">New</button>
+    <button class="backButton"style="height: 20vh; width: 80vw; font-size: 10vh"type="button" name="button" ng-click="showExisting()">Existing</button>
+  </section>
+
+
+  <section class="newRequestTypeButtons"ng-hide="newRequestTypeButtons">
+    <h1 style="color: white"><u>New Request Type</u></h1>
+    <input type="radio" style="width: 5vh; height: 5vh"name="button"value="Fix Time"ng-model="request.requestType">Fix Time
+    <input type="radio" style="width: 5vh; height: 5vh"name="button"value="Time Off"ng-model="request.requestType">Time Off
+    <section class="backButtonsAndLogoutButtonSection">
+    <button class="backButton"type="button" name="button"ng-click="backSelectedSection()">Back</button>
+    <button class="backButton"type="button" name="button"ng-click="showSelectedSection(request.requestType)">Next</button>
+  </section>
+  </section>
+
+
+
+  <section ng-hide="fixTimeSection"class="requestSection">
+    <!-- <h1 style="font-size: 5vh"><u>Fix Time</u></h1> -->
+    <h2>Date of Request</h2>
+    <label class='item item-input'>
+
+    <input type="date" ng-model="request.date">
+    </label>
+
+
+      <b style="margin-bottom: -5vh !important">Correct IN</b><input type="time"ng-model="request.timeIn">
+      <b style="margin-bottom: -5vh !important">Correct OUT</b><input type="time"ng-model="request.timeOut">
+
+    <h2>Request Description</h2>
+    <textarea ng-model="request.description"></textarea>
+    <section class="backButtonsAndLogoutButtonSection">
+    <button class="backButton"type="button" name="button"ng-click="backRequest()">Back</button>
+    <button class="backButton"type="button" ng-click="newRequest(request)">Submit Request</button>
+  </section>
+  </section>
+  <section ng-hide="timeOffSection"class="requestSection">
+    <!-- <h1 style="font-size: 5vh"><u>Time Off</u></h1> -->
+    <h2>Date of Request</h2>
+    <label class='item item-input'>
+    <input type="date" ng-model="request.date">
+  </label>
+    <h2>Request Description</h2>
+    <textarea ng-model="request.description"></textarea>
+    <section class="backButtonsAndLogoutButtonSection">
+    <button class="backButton"type="button" name="button"ng-click="backRequest(request)">Back</button>
+    <button class="backButton"type="button" ng-click="newRequest(request)">Submit Request</button>
+  </section>
+  </section>
+
+
+</section>

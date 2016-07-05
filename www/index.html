@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="timePunch">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Time Punch</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/schedule.css" rel="stylesheet">
+
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/moment.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/loginCtrl.js"></script>
+    <script src="js/clockCtrl.js"></script>
+    <script src="js/myTimeCtrl.js"></script>
+    <script src="js/fixTimeCtrl.js"></script>
+    <script src="js/settingsCtrl.js"></script>
+    <script src="js/helpCtrl.js"></script>
+    <script src="js/myService.js"></script>
+    <script src="js/forgotCtrl.js"></script>
+    <script src="js/scheduleCtrl.js"></script>
+    <script src="js/adminCtrl.js"></script>
+    <script src="js/employeesCtrl.js"></script>
+    <script src="js/adminScheduleCtrl.js"></script>
+    <script src="js/shiftDirective.js"></script>
+    <script src="js/adminSettingsCtrl.js"></script>
+    <script src="js/timeCtrl.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body ng-controller="loginCtrl" id="theBody" class="theBodyClass">
+
+    <nav ng-hide="navHidden" class="animated fadeInLeft">
+      {{employeeName.toUpperCase()}}
+      <img ng-click="showMenu()" class="ham" src="img/hamMenu.png" alt="">
+    </nav>
+  <div ng-hide="aHidden" id="a" ng-class="myClass">
+    <a ng-click="showMenu()" ui-sref="clock">Time Punch</a>
+    <a ng-click="showMenu()" ui-sref="schedule">Schedule</a>
+    <a ng-click="showMenu()" ui-sref="myTime">My Time</a>
+    <a ng-click="showMenu()" ui-sref="fixTime">Requests</a>
+    <a ng-click="showMenu()" ui-sref="settings">Settings</a>
+    <a ng-click="showMenu(); logout()">Logout</a>
+    <a ng-click="showMenu()" ui-sref="help">Help</a>
+  </div>
+
+
+
+
+
+
+
+    <section class="loginSection" ng-hide="loginSectionHidden">
+      <h2 id="loginP" ng-class="titleClass">
+        Time <admin on-double-tap="onDoubleTap()">P</admin>unch
+      </h2>
+
+      <div ng-hide="theClockHidden" id="theClock" ng-class="theClockClass">
+              <article class="clock">
+        <div class="hours-container">
+          <div class="hours"></div>
+        </div>
+        <div class="minutes-container">
+          <div class="minutes"></div>
+        </div>
+        <div class="seconds-container">
+          <div class="seconds"></div>
+        </div>
+      </article>
+      </div>
+      <div class="theInputs">
+        <h3 ng-hide="inputHidden" id="forgotten" ng-class="theInputClass4">Login</h3>
+
+
+        <input ng-class="theInputClass1" ng-hide="inputHidden" type="email" placeholder="Email address" ng-model="employee.email">
+
+        <input ng-class="theInputClass2" ng-hide="inputHidden" type="password" placeholder="Password" ng-model="employee.password">
+
+
+      </div>
+      <div id="theLoginBottom" ng-class="bottomClass">
+        <div class="buttons">
+          <button ng-hide="fakeLoginButtonHidden" class="thebuttons" type="button" ng-click="fakeLoginButton()">Login</button><button ng-hide="loginButtonHidden" class="thebuttons" type="button" ng-click="loginButton(employee)">Login</button><button class="thebuttons" type="button" ng-click="registerButton()">Register</button>
+
+        </div>
+        <a class="forgot" ui-sref="forgot" ng-click="forgotten()">Forgot your Login info?</a>
+      </div>
+
+    </section>
+
+
+
+
+    <ui-view></ui-view>
+  </body>
+</html>

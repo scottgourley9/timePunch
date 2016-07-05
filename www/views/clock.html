@@ -1,0 +1,35 @@
+<section id="clockSection" ng-class="myClockSection"ng-hide="clockHidden">
+  <div class="top">
+  <h1>Time Card of {{theDay | date: 'shortDate'}}</h1>
+  <button class="clockIns"ng-hide="inHidden"type="button" ng-click="clockIn()">CLOCK IN</button>
+  <button class="clockIns"ng-hide="outHidden"type="button" ng-click="clockOut()">CLOCK OUT</button>
+  <div class="clockActivity">
+    <div class="timeStamp" ng-hide="inTimeStampHidden">
+      Last activity: Clocked IN at {{inTimeStamp | date: 'mediumTime'}}
+    </div>
+    <div class="timeStamp" ng-hide="outTimeStampHidden">
+      Last activity: Clocked OUT at {{outTimeStamp | date: 'mediumTime'}}
+    </div>
+
+    <div class="timeWorked">
+      Total time worked this day &nbsp;<span>{{hours}}:{{minutes}}:{{seconds}}</span>
+
+    </div>
+  </div>
+
+</div>
+<br>
+
+  <ion-content>
+  <ion-list class="timeStampLog" ng-repeat="time in timeStamps">
+
+    <ion-item>
+    Clocked {{time.inOrOut}} at {{time.timeStamp | date: 'mediumTime'}}
+  </ion-item>
+  </ion-list>
+</ion-content>
+
+
+</section>
+
+<ui-view></ui-view>

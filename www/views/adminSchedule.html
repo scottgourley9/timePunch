@@ -1,0 +1,90 @@
+ <section id="scheduleView" ng-class="scheduleViewClass" ng-hide=entireScheduleView>
+   <h1 style="color: white">{{employeeSelected.name.toUpperCase()}}</h1>
+  <section class='topSchedule'>
+
+    <!-- <button class="topScheduleButton" ng-hide='weekButton'ng-click="toggleItWeek()"type="button">Week</button>
+    <button class="topScheduleButton" ng-hide='monthButton'ng-click="toggleItMonth()"type="button">Month</button> -->
+    <button type="button" ng-click="previousWeek()" style="color: white"><b style="font-size: 10vh"><</b></button>
+      <p ng-hide="weekHidden">
+        Week of {{sunday._d | date: 'shortDate'}}-{{saturday._d | date: 'shortDate'}}
+      </p>
+
+      <p ng-hide="monthHidden">
+        {{theMonth | date: 'MMMM'}}
+      </p>
+      <button type="button" ng-click="nextWeek()" style="color: white"><b style="font-size: 10vh">></b></button>
+  </section>
+
+  <div class="weekBox" ng-hide="weekHidden">
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{sunday._d}} class="sBox" day="day">SUN  {{sunday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledSunday.start | date: 'shortTime'}}<br>{{scheduledSunday.lunch | date: 'shortTime'}}<br>{{scheduledSunday.end | date: 'shortTime'}}</div></div>
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{monday._d}} class="sBox" day="day">MON  {{monday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledMonday.start | date: 'shortTime'}}<br>{{scheduledMonday.lunch | date: 'shortTime'}}<br>{{scheduledMonday.end | date: 'shortTime'}}</div></div>
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{tuesday._d}} class="sBox" day="day">TUE  {{tuesday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledTuesday.start | date: 'shortTime'}}<br>{{scheduledTuesday.lunch | date: 'shortTime'}}<br>{{scheduledTuesday.end | date: 'shortTime'}}</div></div>
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{wednesday._d}} class="sBox" day="day">WED  {{wednesday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledWednesday.start | date: 'shortTime'}}<br>{{scheduledWednesday.lunch | date: 'shortTime'}}<br>{{scheduledWednesday.end | date: 'shortTime'}}</div></div>
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{thursday._d}} class="sBox" day="day">THU  {{thursday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledThursday.start | date: 'shortTime'}}<br>{{scheduledThursday.lunch | date: 'shortTime'}}<br>{{scheduledThursday.end | date: 'shortTime'}}</div></div>
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{friday._d}} class="sBox" day="day">FRI  {{friday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledFriday.start | date: 'shortTime'}}<br>{{scheduledFriday.lunch | date: 'shortTime'}}<br>{{scheduledFriday.end | date: 'shortTime'}}</div></div>
+  <div ng-click="scheduleForThisDay()" shift-directive day-selected={{saturday._d}} class="sBox" day="day">SAT  {{saturday._d | date: 'shortDate'}}<div class='shiftWeek'>{{scheduledSaturday.start | date: 'shortTime'}}<br>{{scheduledSaturday.lunch | date: 'shortTime'}}<br>{{scheduledSaturday.end | date: 'shortTime'}}</div></div>
+</div>
+
+<!-- <div class="monthBox" ng-hide="monthBoxHidden">
+  <div class="sMonthBox">1<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">2<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">3<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">4<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">5<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">6<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">7<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">8<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">9<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">10<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">11<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">12<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">13<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">14<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">15<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">16<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">17<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">18<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">19<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">20<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">21<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">22<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">23<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">24<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">25<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">26<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">27<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox">28<div class='shift'>{{}}</div></div>
+  <div class="sMonthBox" ng-hide="twentyNine">29</div>
+  <div class="sMonthBox" ng-hide="thirty">30</div>
+  <div class="sMonthBox" ng-hide="thirtyOne">31</div>
+</div> -->
+
+
+
+</section>
+
+
+<div class="scheduleSelectedDay" style="border-style: solid; border-color: white"ng-hide="scheduleSelectedDayHidden">
+  <h1 class="animated fadeInRight"style="color: white; padding-top: 2vh">{{theDateToEdit | date: 'shortDate'}}</h1>
+
+
+
+  <h2 class="animated fadeInLeft"ng-hide="scheduleTimeInput"style="color: white">Start Time</h2>
+  <input ng-hide="scheduleTimeInput"class="inputTime animated fadeInLeft"type="time" ng-model="theShiftStart">
+  <h2 class="animated fadeInRight"ng-hide="scheduleTimeInput"style="color: white">Break Time</h2>
+  <input ng-hide="scheduleTimeInput"class="inputTime animated fadeInRight"type="time"  ng-model="theShiftLunch">
+  <h2 class="animated fadeInLeft"ng-hide="scheduleTimeInput"style="color: white">End Time</h2>
+  <input ng-hide="scheduleTimeInput"class="inputTime animated fadeInLeft"type="time" ng-model="theShiftEnd">
+  <!-- <h2 class="animated fadeInLeft"ng-hide="scheduleTimeInput"style="color: white">Custom Input</h2>
+  <input ng-hide="scheduleTimeInput"class="inputTime animated fadeInLeft"type="text" style="background-color: white; color: black"ng-model="theShiftStart"> -->
+  <section style="margin-bottom: -4vh; margin-top: 3vh;"class="backButtonsAndLogoutButtonSection">
+    <button style="height: 6vh"class="backButton animated fadeInRight" type="button" ng-click="off()" style='color: white'>OFF</button>
+    <button style="height: 6vh"class="backButton animated fadeInRight" type="button" ng-click="submitShift()" style='color: white'>Submit</button>
+  </section>
+
+  </div>
+<section class="backButtonsAndLogoutButtonSection">
+<button class="backButton" type="button" ng-click='menu()'>Menu</button>
+<button class="backButton" ng-hide='justBack'type="button" ng-click='back()'>Back</button>
+<button class="backButton" ng-hide='backToCalendar'type="button" ng-click='backOne()'>Back</button>
+</section>

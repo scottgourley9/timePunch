@@ -1,0 +1,61 @@
+<section id="scheduleView" ng-class="timeViewClass" ng-hide='entireScheduleView'>
+  <h1 style="color: white">{{employeeSelected.name.toUpperCase()}}</h1>
+ <section class='topSchedule'>
+
+   <!-- <button class="topScheduleButton" ng-hide='weekButton'ng-click="toggleItWeek()"type="button">Week</button>
+   <button class="topScheduleButton" ng-hide='monthButton'ng-click="toggleItMonth()"type="button">Month</button> -->
+   <button type="button" ng-click="previousWeek()" style="color: white"><b style="font-size: 6vh"><</b></button>
+     <p ng-hide="weekHidden">
+       Week of {{sunday._d | date: 'shortDate'}}-{{saturday._d | date: 'shortDate'}}
+     </p>
+
+     <p ng-hide="monthHidden">
+       {{theMonth | date: 'MMMM'}}
+     </p>
+     <button type="button" ng-click="nextWeek()" style="color: white"><b style="font-size: 6vh">></b></button>
+ </section>
+ Total Time Worked this Week &nbsp;{{totalWeekHours}}:{{totalWeekMinutes}}:{{totalWeekSeconds}}
+ <div class="weekBox" ng-hide="weekHidden">
+ <div ng-click="showThisSunday()" shift-directive day-selected={{sunday._d}} class="sBox" day="day">SUN  {{sunday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{sundayHours}}:{{sundayMinutes}}:{{sundaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesSunday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+ <div ng-click="showThisMonday()" shift-directive day-selected={{monday._d}} class="sBox" day="day">MON  {{monday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{mondayHours}}:{{mondayMinutes}}:{{mondaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesMonday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+ <div ng-click="showThisTuesday()" shift-directive day-selected={{tuesday._d}} class="sBox" day="day">TUE  {{tuesday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{tuesdayHours}}:{{tuesdayMinutes}}:{{tuesdaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesTuesday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+ <div ng-click="showThisWednesday()" shift-directive day-selected={{wednesday._d}} class="sBox" day="day">WED  {{wednesday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{wednesdayHours}}:{{wednesdayMinutes}}:{{wednesdaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesWednesday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+ <div ng-click="showThisThursday()" shift-directive day-selected={{thursday._d}} class="sBox" day="day">THU  {{thursday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{thursdayHours}}:{{thursdayMinutes}}:{{thursdaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesThursday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+ <div ng-click="showThisFriday()" shift-directive day-selected={{friday._d}} class="sBox" day="day">FRI  {{friday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{fridayHours}}:{{fridayMinutes}}:{{fridaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesFriday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+ <div ng-click="showThisSaturday()" shift-directive day-selected={{saturday._d}} class="sBox" day="day">SAT  {{saturday._d | date: 'shortDate'}}<br><timeWorked>Time Worked:&nbsp;{{saturdayHours}}:{{saturdayMinutes}}:{{saturdaySeconds}}</timeWorked><div class='timeWeek' ng-repeat="time in timesSaturday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div></div>
+</div>
+</section>
+
+<div ng-hide="theSundayChosen"class="bigBox">
+SUN  {{sunday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{sundayHours}}:{{sundayMinutes}}:{{sundaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesSunday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="sundayDone()">Done</button>
+</div>
+<div ng-hide="theMondayChosen"class="bigBox">
+MON  {{monday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{mondayHours}}:{{mondayMinutes}}:{{mondaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesMonday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="mondayDone()">Done</button>
+</div>
+<div ng-hide="theTuesdayChosen"class="bigBox">
+TUE  {{tuesday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{tuesdayHours}}:{{tuesdayMinutes}}:{{tuesdaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesTuesday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="tuesdayDone()">Done</button>
+</div>
+<div ng-hide="theWednesdayChosen"class="bigBox">
+WED  {{wednesday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{wednesdayHours}}:{{wednesdayMinutes}}:{{wednesdaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesWednesday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="wednesdayDone()">Done</button>
+</div>
+<div ng-hide="theThursdayChosen"class="bigBox">
+THU  {{thursday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{thursdayHours}}:{{thursdayMinutes}}:{{thursdaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesThursday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="thursdayDone()">Done</button>
+</div>
+<div ng-hide="theFridayChosen"class="bigBox">
+FRI  {{friday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{fridayHours}}:{{fridayMinutes}}:{{fridaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesFriday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="fridayDone()">Done</button>
+</div>
+<div ng-hide="theSaturdayChosen"class="bigBox">
+SAT  {{saturday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{saturdayHours}}:{{saturdayMinutes}}:{{saturdaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesSaturday">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</div>
+<button class="backButton"type="button" ng-click="saturdayDone()">Done</button>
+</div>
+<section class="backButtonsAndLogoutButtonSection" ng-hide="buttonsBottomHidden">
+<button class="backButton" type="button" ng-click='menu()'>Menu</button>
+<button class="backButton" ng-hide='justBack'type="button" ng-click='back()'>Back</button>
+
+</section>

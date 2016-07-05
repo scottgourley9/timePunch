@@ -1,0 +1,33 @@
+
+
+<section class="employeesSection" ng-hide="entireEmployeeSection">
+
+    <h1>Employee <sp ng-hide='theEmployeeList'>List</sp></h1>
+    <section ng-hide="theEmployeeList" class="employeeTitle">
+    Search: &nbsp;<input type="text" placeholder="Enter employee name..." ng-model="searchedEmployee">
+  </section>
+  <section class="employeeList">
+      <ul ng-hide="employeeInfo">
+        <li class="empName">{{employee.toUpperCase()}}</li>
+        <li class="empInfo" ng-click="removeEmployee()"><center>Remove</center></li>
+        <li class="empInfo" ng-click="goToSchedule()"><center>Schedule</center></li>
+        <li class="empInfo" ng-click="goToTime()"><center>Time</center></li>
+      </ul>
+      <br>
+      <ion-content ng-hide='theEmployeeList'class="theOverflow">
+      <ion-list  ng-hide="theEmployeeList" ng-repeat='employee in employees | filter: searchedEmployee'>
+        <ion-item class='myEmployee' ng-click="showUserInfo(employee)">
+        {{employee.name.toUpperCase()}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+<br>
+</section>
+
+</section>
+<section class="backButtonsAndLogoutButtonSection" ng-hide="backButtonsAndLogoutButtonSectionHidden">
+<button class="backButton"type="button" ng-click='menu()'>Menu</button>
+<button class="backButton"ng-hide="backAdminButton" type="button" ng-click='back()'>Back</button>
+<button class="backButton"ng-hide="backOneAdminButton" type="button" ng-click='backOne()'>Back</button>
+</section>
+  <ui-view></ui-view>

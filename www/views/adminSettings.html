@@ -1,0 +1,47 @@
+
+
+<section class="adminView" ng-hide="theAdminView">
+
+  <div class="adminBox settingsBox animated slideInRight"><s ng-hide='sClassHidden' ng-click='showProfile()' >Profile Info</s></div>
+  <div class="adminBox employeeBox animated slideInLeft"><s ng-hide='sClassHidden' ng-click='changePasswordPage()' >Change Password</s></div>
+  <div class="adminBox settingsBox animated slideInRight"><s ng-hide='sClassHidden' ng-click='changeCompanyIdPage()' >Change Company ID</s></div>
+
+
+</section>
+<section ng-hide="hideDemButtons"class="backButtonsAndLogoutButtonSection">
+<button class="backButton" type="button" ng-click='menu()'>Menu</button>
+<button class="backButton" type="button" ng-click='menu()'>Back</button>
+</section>
+</section>
+
+<section class="profileInfo">
+  <section ng-hide="profileOfAdmin">
+  <div>Name</div>
+  <div>
+   <the style="font-size: 3vh">{{currentAdmin.name.toUpperCase()}}</the>
+  </div>
+  <div>Email</div>
+  <div>
+   <the style="font-size: 3vh">{{currentAdmin.email}}</the>
+  </div>
+  <div>Company ID</div>
+  <div>
+   <the style="font-size: 3vh">{{currentAdmin.companyId}}</the>
+  </div>
+
+</section>
+  <section ng-hide="changePasswordPageHidden">
+    <div>Enter NEW password</div>
+    <div><input type="text" placeholder="Enter NEW password..." ng-model="newPassword"></div>
+    <div><button class="backButton" type="button" ng-click='changePassword(newPassword)'>Submit</button></div>
+  </section>
+  <section ng-hide="changeCompanyIdPageHidden">
+    <div>Enter NEW COMPANY ID</div>
+    <div><input type="text" placeholder="Enter NEW ID..." ng-model="newCompanyId"></div>
+    <div><button class="backButton" type="button" ng-click='changeCompanyId(newCompanyId)'>Submit</button></div>
+  </section>
+</section>
+<section class="backButtonsAndLogoutButtonSection">
+<button class="backButton" type="button" ng-click='menu()'>Menu</button>
+<button class="backButton" type="button" ng-click='back()'>Back</button>
+</section>
