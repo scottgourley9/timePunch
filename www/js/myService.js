@@ -6,6 +6,7 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
   this.employeeSectionShowing;
   this.backButtonsAndLogoutButtonSectionHidden;
 
+
   this.registerUser = function(employee){
     return $http({
       method: "POST",
@@ -109,6 +110,20 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
       data: {companyId: newCompanyId}
     })
   }
+  this.changePasswordUser = function(newPassword, userId){
+    return $http({
+      method: "PUT",
+      url: '/api/changeUserPassword/' + userId,
+      data: {password: newPassword}
+    })
+  }
+  this.changeCompanyIdUser = function(newCompanyId, userId){
+    return $http({
+      method: "PUT",
+      url: '/api/changeUserCompanyId/' + userId,
+      data: {companyId: newCompanyId}
+    })
+  }
   this.getEmployeeTimeStamps = function(){
     return $http({
       method: "GET",
@@ -130,7 +145,54 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
       data: theRequest
     })
   }
+  this.getRequests = function(){
+    return $http({
+      method: "GET",
+      url: '/api/getRequests/' + this.currentUser._id
+    })
+  }
 
+  this.removeRequestFromUser = function(requestId){
+    return $http({
+      method: "DELETE",
+      url: '/api/deleteRequest/' + this.currentUser._id + "/" + requestId
+    })
+  }
+  this.removeRequestFromUserAdmin = function(requestId, userSelected){
+    return $http({
+      method: "DELETE",
+      url: '/api/deleteRequest/' + userSelected._id + "/" + requestId
+    })
+  }
+  this.editRequestFromUser = function(requestId, updateRequest){
+    return $http({
+      method: "PUT",
+      url: '/api/updateRequest/' + this.currentUser._id + "/" + requestId,
+      data: updateRequest
+    })
+  }
+  this.getUserRequestsForAdmin = function(user){
+    return $http({
+      method: "GET",
+      url: "/api/requestsForAdmin/" + user._id
+    })
 
+  }
+
+  this.denyRequest = function(requestId){
+    return $http({
+      method: "PUT",
+      url: '/api/denyRequest/' + requestId,
+      data: {answer: "DENIED"}
+    })
+  }
+
+  this.approveRequest = function(requestId){
+    return $http({
+      method: "PUT",
+      url: '/api/approveRequest/' + requestId,
+      data: {answer: "APPROVED"}
+    })
+  }
 
   })

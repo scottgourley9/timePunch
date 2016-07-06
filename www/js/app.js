@@ -87,6 +87,18 @@ angular.module('timePunch', ['ionic'])
   templateUrl: 'views/time.html',
   controller: 'timeCtrl'
 })
+.state('exisitingRequests', {
+  parent: 'clock',
+  url: '/exisitingRequests',
+  templateUrl: 'views/exisitingRequests.html',
+  controller: 'exisitingRequestsCtrl'
+})
+.state('adminRequests', {
+  parent: 'employees',
+  url: '/adminRequests',
+  templateUrl: 'views/adminRequests.html',
+  controller: 'adminRequestsCtrl'
+})
 
 
 

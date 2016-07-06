@@ -239,6 +239,26 @@ app.put('/api/changeAdminCompanyId/:id', function(req, res){
     }
   })
 })
+app.put('/api/changeUserPassword/:id', function(req, res){
+  User.findByIdAndUpdate(req.params.id, {$set: {password: req.body.password}}, function(err, success){
+    if(err){
+      res.status(500).json(false)
+    }
+    else {
+      res.status(200).json(true)
+    }
+  })
+})
+app.put('/api/changeUserCompanyId/:id', function(req, res){
+  User.findByIdAndUpdate(req.params.id, {$set: {companyId: req.body.companyId}}, function(err, success){
+    if(err){
+      res.status(500).json(false)
+    }
+    else {
+      res.status(200).json(true)
+    }
+  })
+})
 
 app.get('/api/timeStamps/:id', function(req, res){
   User.findById(req.params.id).populate('timeStamps').exec(function(err, user){
@@ -257,7 +277,83 @@ app.post('/api/request', function(req, res){
       res.status(500).json(false)
     }
     else {
-      res.status(200).json(true)
+      User.findByIdAndUpdate(theRequest.user, {$push: {requests: theRequest._id}}, function(err, posted){
+      if(err){
+        res.status(500).json(false)
+      }
+      else {
+        res.status(200).json(true)
+      }
+      })
+    }
+  })
+})
+
+app.get('/api/getRequests/:id', function(req, res){
+  User.findById(req.params.id).populate('requests').exec(function(err, user){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      var userRequests = user.requests
+      res.status(200).json(userRequests)
+    }
+  })
+})
+
+app.delete('/api/deleteRequest/:userId/:requestId', function(req, res){
+  User.findByIdAndUpdate(req.params.userId, {$pull: {requests: req.params.requestId}}, function(err, deleted){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json('deleted')
+    }
+
+  })
+
+})
+
+app.put('/api/updateRequest/:userId/:requestId', function(req, res){
+    Request.findByIdAndUpdate(req.params.requestId, {$set: {date: req.body.date, description: req.body.description, requestType: req.body.requestType, timeIn: req.body.timeIn, timeOut: req.body.timeOut}}, function(err, answer){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json(answer)
+    }
+})
+})
+
+app.get('/api/requestsForAdmin/:id', function(req, res){
+  User.findById(req.params.id).populate('requests').exec(function(err, user){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      var userRequests = user.requests;
+      res.status(200).json(userRequests);
+    }
+  })
+})
+
+app.put('/api/denyRequest/:id', function(req, res){
+  Request.findByIdAndUpdate(req.params.id, {$set: {status: req.body.answer}}, function(err, answer){
+    if(err){
+      res.status(500).json(false)
+    }
+    else {
+      res.status(200).json(true);
+    }
+  })
+})
+app.put('/api/approveRequest/:id', function(req, res){
+  Request.findByIdAndUpdate(req.params.id, {$set: {status: req.body.answer}}, function(err, answer){
+    if(err){
+      res.status(500).json(false)
+    }
+    else {
+      res.status(200).json(true);
     }
   })
 })

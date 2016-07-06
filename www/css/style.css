@@ -16,6 +16,12 @@ nav {
   background-color: #000619;
 
 }
+.adminRequestBody {
+  
+}
+.adminRequestBody ion-item {
+  width: 90vw;
+}
 #a {
   width: 75vw;
   height: 60vh;
@@ -665,7 +671,7 @@ timeWorked {
   font-family: sans-serif;
   color: #fff;
   font-weight: bold;
-  height: 85vh;
+  height: 70vh;
   width: 100vw;
   align-items: center;
 
@@ -748,11 +754,73 @@ input {
   border-radius: 10px;
 }
 
+.existingRequests {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  width: 100vw;
+  align-items: center;
+  padding: 2vh;
+  position: relative;
+}
+.existingRequests ion-item{
+  width: 90vw;
+  position: relative;
+}
+.existingRequests ion-content {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 100vw;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2vh;
+  margin-top: -2vh;
+}
+.requestListButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.forgotBody input {
+  height: 7vh;
+  font-size: 3.5vh;
+}
 
-
-
-
-
+.helpTopics li{
+  border-radius: 10px;
+  border-color: #FFBF00;
+  border-width: thick;
+  border-style: outset;
+  background-color: #000619;
+  height: 10vh;
+  width: 80vw;
+  font-size: 5vh;
+  font-family: sans-serif;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+.helpBody {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+}
+.eachHelpTopic {
+  font-size: 3.3vh;
+  font-family: sans-serif;
+  color: #fff;
+  text-align: center;
+  line-height: 150%;
+  word-wrap: break-word;
+  width: 90vw;
+}
 
 
 @charset "UTF-8";

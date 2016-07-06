@@ -38,7 +38,7 @@ $scope.changeCompanyIdPageHidden = true;
   }
   $scope.changeCompanyId = function(newCompanyId){
     myService.changeCompanyId(newCompanyId, $scope.currentAdmin._id).then(function(res){
-      if(res){
+      if(res.data){
         var confirmPopup = $ionicPopup.alert({
        title: 'COMPANY ID CHANGED',
        template: '<center>You will now be LOGGED OUT</center><br><center> Please RE-LOGIN</center>'
@@ -52,7 +52,7 @@ $scope.changeCompanyIdPageHidden = true;
   }
   $scope.changePassword = function(newPassword){
     myService.changePassword(newPassword, $scope.currentAdmin._id).then(function(res){
-      if(res){
+      if(res.data){
         var confirmPopup = $ionicPopup.alert({
        title: 'PASSWORD CHANGED',
        template: '<center>You will now be LOGGED OUT</center><br><center> Please LOG IN with your NEW password</center>'

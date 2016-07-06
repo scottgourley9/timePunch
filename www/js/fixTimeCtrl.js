@@ -3,12 +3,17 @@ angular.module('timePunch').controller('fixTimeCtrl', function($ionicPopup, $sco
   $scope.newRequestTypeButtons = true;
   $scope.fixTimeSection = true;
   $scope.timeOffSection = true;
-
+  $scope.entireFixHtmlHidden = false;
 
   $scope.showNew = function(){
     $scope.mainPageButtons = true;
     $scope.newRequestTypeButtons = false;
   }
+  $scope.showExisting = function(){
+
+    $state.go('exisitingRequests');
+  }
+
   $scope.backSelectedSection = function(){
     $scope.mainPageButtons = false;
     $scope.newRequestTypeButtons = true;
