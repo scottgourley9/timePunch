@@ -251,6 +251,7 @@ that.postTheLocation = function(locationObj){
 
     this.stopTracking = function(){
       $interval.cancel(locationInterval);
+      locationInterval = undefined;
     }
   }
 
@@ -294,6 +295,14 @@ that.postTheLocation = function(locationObj){
     return $http({
       method: "GET",
       url: "/api/getAdminFromCompanyId/" + this.currentUser.companyId
+    })
+  }
+
+  this.noRestriction = function(boolean){
+    return $http({
+      method: "PUT",
+      url: '/api/noRestriction/' + this.currentAdmin._id,
+      data: {restricted: boolean}
     })
   }
 

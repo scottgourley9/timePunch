@@ -7,7 +7,8 @@ var adminSchema = new Schema({
   password: {type: String, require: true},
   companyId: {type: String, unique: true, require: true},
   setLocationLat: String,
-  setLocationLng: String
+  setLocationLng: String,
+  noLocation: Boolean
 })
 
 module.exports = mongoose.model("Admin", adminSchema);

@@ -878,7 +878,20 @@ input {
   width: 100%;
 }
 
-
+.spinner svg {
+  width: 40vh;
+  height: 40vh;
+  stroke: #444;
+  fill: #FFBF00;
+}
+.spinnerSection {
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

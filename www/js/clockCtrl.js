@@ -1,6 +1,6 @@
 angular.module('timePunch').controller('clockCtrl', function($ionicPopup, $timeout, $rootScope, $location, $interval, $scope, $state, myService){
 
-
+  $scope.spinnerHidden = true;
   if($scope.inHidden = true){
     $scope.outHidden = false;
 
@@ -94,6 +94,10 @@ angular.module('timePunch').controller('clockCtrl', function($ionicPopup, $timeo
       timeout: 10000
     }
     var updateLocation = function(position){
+      $scope.clockHidden = false;
+      $scope.myClockSection.splice(0);
+      $scope.myClockSection.push('animated fadeInLeft');
+      $scope.spinnerHidden = true;
         $scope.latitude = position.coords.latitude;
         $scope.longitude = position.coords.longitude;
           var R = 3959;
@@ -155,12 +159,43 @@ angular.module('timePunch').controller('clockCtrl', function($ionicPopup, $timeo
     }
 
       $scope.clockIn = function(){
-        $scope.getUserLocation();
+
         myService.getAdminFromCompanyId().then(function(response){
           $scope.admin = response.data;
+          if($scope.admin.noLocation){
+            time();
+            
+              myService.stillIn = true;
+              $scope.inTimeStamp = new Date();
+              $scope.inHidden = true;
+              $scope.outHidden = false;
+              $scope.inTimeStampHidden = false;
+              $scope.outTimeStampHidden = true;
+              $scope.totalTimeHidden = true;
+                var day = new Date();
+                var theDay = day.toDateString();
 
+                var dateObj = {
+                  day: theDay,
+                  timeStamp: day,
+                  inOrOut: 'IN'
+                }
+                  myService.postTimeStamp(dateObj).then(function(postTimeResponse){
+                    myService.postTimeStampToUser(postTimeResponse);
+                    myService.getTimes($scope.myDate).then(function(response){
 
+                    $scope.timeStamps = response.data.timeStamps;
+                  })
+                })
 
+                myService.trackLocation();
+          }
+          else {
+            $scope.clockHidden = true;
+            $scope.myClockSection.splice(0);
+            $scope.spinnerHidden = false;
+            $scope.getUserLocation();
+          }
 
 
             })

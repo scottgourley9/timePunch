@@ -418,7 +418,7 @@ app.get('/api/getUserLocations/:id', function(req, res){
 })
 
 app.put('/api/setLocationOnAdmin/:id', function(req, res){
-  Admin.findByIdAndUpdate(req.params.id, {$set: {setLocationLat: req.body.lat, setLocationLng: req.body.lng}}, function(err, theRes){
+  Admin.findByIdAndUpdate(req.params.id, {$set: {setLocationLat: req.body.lat, setLocationLng: req.body.lng, noLocation: false}}, function(err, theRes){
     if(err){
       res.status(500).json(err)
     }
@@ -435,6 +435,17 @@ app.get('/api/getAdminFromCompanyId/:companyId', function(req, res){
     }
     else {
       res.status(200).json(admin)
+    }
+  })
+})
+
+app.put('/api/noRestriction/:id', function(req, res){
+  Admin.findByIdAndUpdate(req.params.id, {$set: {noLocation: req.body.restricted}}, function(err, aRes){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json(aRes)
     }
   })
 })

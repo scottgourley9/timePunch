@@ -14,6 +14,7 @@ angular.module('timePunch').controller('employeeLocationCtrl', function($interva
 
     $scope.backLocationButton = function(){
       $interval.cancel(adminInterval);
+      adminInterval = undefined;
       $state.go('employees');
     }
 
