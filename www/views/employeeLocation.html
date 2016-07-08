@@ -1,0 +1,17 @@
+<section class="employeeLocation">
+  <div>
+    Last Updated<br> {{userLocations[userLocations.length - 1].date | date: 'shortDate'}} &nbsp;{{userLocations[userLocations.length - 1].date | date: 'shortTime'}} <br>
+    <smaller>ONLY TRACKS WHILE USER IS CLOCKED IN</smaller>
+  </div>
+
+  <!-- <img src="https://maps.googleapis.com/maps/api/staticmap?center={{userLocations[userLocations.length - 1].latitude}},{{userLocations[userLocations.length - 1].longitude}}&zoom=13&size=300x300&sensor=false"/> -->
+
+
+  <div class="map"map-lazy-load="https://maps.google.com/maps/api/js">
+    <ng-map zoom="12" center="[{{userLocations[userLocations.length - 1].latitude}},{{userLocations[userLocations.length - 1].longitude}}]">
+      <marker position="[{{userLocations[userLocations.length - 1].latitude}},{{userLocations[userLocations.length - 1].longitude}}]" title="employee" animation="Animation.DROP"></marker>
+    </ng-map>
+</div>
+
+  <button class="backButton"type="button" ng-click="backLocationButton()">Back</button>
+</section>

@@ -11,6 +11,10 @@ angular.module('timePunch').controller('employeesCtrl', function($state, $ionicP
   $scope.backAdminButton = false;
   $scope.backOneAdminButton = true;
 
+  $scope.goToLocation = function(){
+    $state.go('employeeLocation');
+  }
+
   $scope.goToRequests = function(){
     myService.employeeSectionShowing = true;
     myService.backButtonsAndLogoutButtonSectionHidden = true;
@@ -19,6 +23,7 @@ angular.module('timePunch').controller('employeesCtrl', function($state, $ionicP
 
   $scope.showUserInfo = function(employee){
     $scope.employeeSelected = employee;
+    myService.theEmployeeSelected = employee;
     $scope.employee = employee.name;
     $scope.theEmployeeList = true;
     $scope.employeeInfo = false;

@@ -5,7 +5,7 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
   this.stillIn;
   this.employeeSectionShowing;
   this.backButtonsAndLogoutButtonSectionHidden;
-
+  this.theEmployeeSelected;
 
   this.registerUser = function(employee){
     return $http({
@@ -41,6 +41,13 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
     return $http({
       method: "PUT",
       url: '/api/timeStamp/' + this.currentUser._id,
+      data: postedTimeStampObj.data
+    })
+  }
+  this.postTimeStampToUserApprove = function(postedTimeStampObj, selectedUser){
+    return $http({
+      method: "PUT",
+      url: '/api/timeStampApprove/' + selectedUser._id,
       data: postedTimeStampObj.data
     })
   }
@@ -194,5 +201,104 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
       data: {answer: "APPROVED"}
     })
   }
+
+  this.clearTime = function(requestObj){
+    return $http({
+      method: "DELETE",
+      url: '/api/clearTime/' + requestObj.day,
+    })
+  }
+  this.changeTime = function(requestObj){
+
+    return $http({
+      method: "PUT",
+      url: '/api/changeTime/' + requestObj.day,
+      data: requestObj
+    })
+  }
+  var that = this;
+that.postTheLocation = function(locationObj){
+  return $http({
+    method: "POST",
+    url: '/api/postLocation/' + this.currentUser._id,
+    data: locationObj
+  })
+}
+
+  var updateLocation = function(position){
+    var locationObj = {
+      date: new Date(),
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+
+    }
+    that.postTheLocation(locationObj);
+
+  }
+  var locationError = function(){
+    alert('location unavailable');
+  }
+  var locationOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 10000
+  }
+  this.trackLocation = function(){
+    navigator.geolocation.getCurrentPosition(updateLocation, locationError, locationOptions);
+    var locationInterval = $interval(function(){
+      navigator.geolocation.getCurrentPosition(updateLocation, locationError, locationOptions);
+    }, 300000)
+
+    this.stopTracking = function(){
+      $interval.cancel(locationInterval);
+    }
+  }
+
+  this.getUserLocations = function(selectedUserId){
+    return $http({
+      method: "GET",
+      url: "/api/getUserLocations/" + selectedUserId
+    })
+  }
+
+  this.setAddress = function(address){
+    var strArr = address.street.split("");
+    for(var i = 0; i < strArr.length; i++){
+      if(strArr[i] === " "){
+        strArr[i] = "+";
+      }
+    }
+    var newAddress = strArr.join("");
+    var cityArr = address.city.split("");
+    for(var j = 0; j < cityArr.length; j++){
+      if(cityArr[j] === " "){
+        cityArr[j] = "+";
+      }
+    }
+    var newCity = cityArr.join("");
+    return $http({
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + newAddress + "," + newCity + "," + address.state + "," + address.zip + "&key=AIzaSyCE-IsoxmgBiFRKXn0ZgZcYlLZ1FSvpJns"
+    })
+  }
+
+  this.setLocation = function(locationObj){
+    return $http({
+      method: "PUT",
+      url: '/api/setLocationOnAdmin/' + this.currentAdmin._id,
+      data: locationObj
+    })
+  }
+
+  this.getAdminFromCompanyId = function(){
+    return $http({
+      method: "GET",
+      url: "/api/getAdminFromCompanyId/" + this.currentUser.companyId
+    })
+  }
+
+
+
+
 
   })

@@ -7,6 +7,9 @@ angular.module('timePunch').controller('adminCtrl', function($ionicPopup, $timeo
       $scope.sClass.push('animated flipInX')
     },750)
 
+    $scope.goToLocation = function(){
+      $state.go('setLocation');
+    }
     $scope.employees = function(){
       $state.go('employees');
     }

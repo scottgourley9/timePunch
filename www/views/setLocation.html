@@ -1,0 +1,14 @@
+<section class="setLocation">
+  Resitrict CLOCK INs to
+  <form class="setLocationForm">
+    Address<input type="text"placeholder="Enter address" ng-model="address.street">
+    City<input type="text"placeholder="Enter city" ng-model="address.city">
+    State<input type="text"placeholder="Enter state" ng-model="address.state">
+    Zip<input type="text"placeholder="Enter zip" ng-model="address.zip">
+
+  </form>
+  </section>
+  <section class="backButtonsAndLogoutButtonSection">
+  <button class="backButton"type="button" name="button" ng-click="submitAddress(address)">Submit Address</button>
+  <button class="backButton"type="button" name="button" ng-click="goBackToAdmin()">Back</button>
+  </section>

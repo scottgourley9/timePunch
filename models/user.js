@@ -8,7 +8,8 @@ var userSchema = new Schema({
   companyId: {type: String, require: true},
   timeStamps: [{type: String, ref: "Time"}],
   schedule: [{type: String, ref: "Shift"}],
-  requests: [{type: String, ref: "Request"}]
+  requests: [{type: String, ref: "Request"}],
+  locations: [{type: String, ref: "Location"}]
 })
 
 module.exports = mongoose.model("User", userSchema);

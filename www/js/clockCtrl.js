@@ -1,4 +1,4 @@
-angular.module('timePunch').controller('clockCtrl', function($timeout, $rootScope, $location, $interval, $scope, $state, myService){
+angular.module('timePunch').controller('clockCtrl', function($ionicPopup, $timeout, $rootScope, $location, $interval, $scope, $state, myService){
 
 
   if($scope.inHidden = true){
@@ -85,32 +85,91 @@ angular.module('timePunch').controller('clockCtrl', function($timeout, $rootScop
       timer = undefined;
     }
 
+    var locationError = function(){
+      alert('location unavailable');
+    }
+    var locationOptions = {
+      enableHighAccuracy: true,
+      maximumAge: 30000,
+      timeout: 10000
+    }
+    var updateLocation = function(position){
+        $scope.latitude = position.coords.latitude;
+        $scope.longitude = position.coords.longitude;
+          var R = 3959;
+          var dLat = deg2rad($scope.latitude-$scope.admin.setLocationLat);
+          var dLon = deg2rad($scope.longitude-$scope.admin.setLocationLng);
+          var a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad($scope.admin.setLocationLat)) * Math.cos(deg2rad($scope.latitude)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+            ;
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          var d = R * c;
+          $scope.theDistance = d;
+          function deg2rad(deg) {
+            return deg * (Math.PI/180)
+          }
+          if(d <= .25){
+            time();
+              myService.stillIn = true;
+              $scope.inTimeStamp = new Date();
+              $scope.inHidden = true;
+              $scope.outHidden = false;
+              $scope.inTimeStampHidden = false;
+              $scope.outTimeStampHidden = true;
+              $scope.totalTimeHidden = true;
+                var day = new Date();
+                var theDay = day.toDateString();
+
+                var dateObj = {
+                  day: theDay,
+                  timeStamp: day,
+                  inOrOut: 'IN'
+                }
+                  myService.postTimeStamp(dateObj).then(function(postTimeResponse){
+                    myService.postTimeStampToUser(postTimeResponse);
+                    myService.getTimes($scope.myDate).then(function(response){
+
+                    $scope.timeStamps = response.data.timeStamps;
+                  })
+                })
+
+                myService.trackLocation();
+
+
+
+          }
+          else {
+            $ionicPopup.alert({
+              title: "Out of Range to Clock IN",
+              template: '<center>Try again when closer</center>'
+            })
+          }
+
+
+          }
+    $scope.getUserLocation = function(){
+      navigator.geolocation.getCurrentPosition(updateLocation, locationError, locationOptions);
+
+    }
 
       $scope.clockIn = function(){
-        time();
-          myService.stillIn = true;
-          $scope.inTimeStamp = new Date();
-          $scope.inHidden = true;
-          $scope.outHidden = false;
-          $scope.inTimeStampHidden = false;
-          $scope.outTimeStampHidden = true;
-          $scope.totalTimeHidden = true;
-            var day = new Date();
-            var theDay = day.toDateString();
+        $scope.getUserLocation();
+        myService.getAdminFromCompanyId().then(function(response){
+          $scope.admin = response.data;
 
-            var dateObj = {
-              day: theDay,
-              timeStamp: day,
-              inOrOut: 'IN'
-            }
-              myService.postTimeStamp(dateObj).then(function(postTimeResponse){
-                myService.postTimeStampToUser(postTimeResponse);
-                myService.getTimes($scope.myDate).then(function(response){
 
-                $scope.timeStamps = response.data.timeStamps;
-              })
+
+
+
             })
-      }
+
+          }
+
+
+
+
 
       $scope.clockOut = function(){
         if(arguments.length !== 0){
@@ -129,6 +188,7 @@ angular.module('timePunch').controller('clockCtrl', function($timeout, $rootScop
             $scope.timeStamps = response.data.timeStamps;
           })
         })
+        myService.stopTracking();
         }
         else {
 
@@ -155,6 +215,7 @@ angular.module('timePunch').controller('clockCtrl', function($timeout, $rootScop
                 $scope.timeStamps = response.data.timeStamps;
               })
             })
+            myService.stopTracking();
           }
       }
 

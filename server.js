@@ -15,6 +15,7 @@ var User = require('./models/user.js');
 var Shift = require('./models/shift.js');
 var Admin = require('./models/admin.js');
 var Request = require('./models/request.js');
+var TheLocation = require('./models/location.js');
 
 
 app.use(express.static(__dirname + '/www'));
@@ -142,6 +143,16 @@ app.put('/api/timeStamp/:id', function(req, res){
     }
   })
 })
+app.put('/api/timeStampApprove/:id', function(req, res){
+  User.findByIdAndUpdate(req.params.id, {$push: {timeStamps: req.body._id}}, function(err, response){
+    if(err){
+      res.status(500).json(err);
+    }
+    else {
+      res.status(200).json(response);
+    }
+  })
+})
 
 
 
@@ -213,7 +224,7 @@ app.get('/api/admin/:email', function(req, res){
       res.status(500).json(err);
     }
     else {
-      console.log(adminUser);
+
       res.status(200).json(adminUser);
     }
   })
@@ -357,9 +368,76 @@ app.put('/api/approveRequest/:id', function(req, res){
     }
   })
 })
+app.delete('/api/clearTime/:day', function(req, res){
+  Time.remove({day: req.params.day}, function(err, answer){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+          res.status(200).json(true)
+    }
+  })
+})
+app.put('/api/changeTime/:day', function(req, res){
+    Time.create(req.body, function(err, createdTime){
+      if(err){
+        res.status(500).json(err)
+      }
+      else {
+        res.status(200).json(createdTime);
+      }
+    })
+})
+app.post('/api/postLocation/:userId', function(req, res){
+  TheLocation.create(req.body, function(err, createdLocation){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      User.findByIdAndUpdate(req.params.userId, {$push: {locations: createdLocation._id}}, function(err, theResponse){
+        if(err){
+          res.status(500).json(err)
+        }
+        else {
+          res.status(200).json("locationCreatedAndPushedToUser");
+        }
+      })
+    }
+  })
+})
 
+app.get('/api/getUserLocations/:id', function(req, res){
+  User.findById(req.params.id).populate('locations').exec(function(err, user){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json(user.locations)
+    }
+  })
+})
 
+app.put('/api/setLocationOnAdmin/:id', function(req, res){
+  Admin.findByIdAndUpdate(req.params.id, {$set: {setLocationLat: req.body.lat, setLocationLng: req.body.lng}}, function(err, theRes){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json(theRes)
+    }
+  })
+})
 
+app.get('/api/getAdminFromCompanyId/:companyId', function(req, res){
+  Admin.findOne({companyId: req.params.companyId}, function(err, admin){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json(admin)
+    }
+  })
+})
 
 
 

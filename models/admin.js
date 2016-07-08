@@ -5,8 +5,9 @@ var adminSchema = new Schema({
   name: {type: String, require: true},
   email: {type: String, unique: true, require: true},
   password: {type: String, require: true},
-  companyId: {type: String, unique: true, require: true}
-
+  companyId: {type: String, unique: true, require: true},
+  setLocationLat: String,
+  setLocationLng: String
 })
 
 module.exports = mongoose.model("Admin", adminSchema);

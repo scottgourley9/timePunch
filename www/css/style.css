@@ -17,7 +17,8 @@ nav {
 
 }
 .adminRequestBody {
-  
+  height: 85vh;
+  width: 100vw;
 }
 .adminRequestBody ion-item {
   width: 90vw;
@@ -63,7 +64,7 @@ a {
   height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: center;
+  align-items: center !important;
   flex-direction: column;
   justify-content: center;
   justify-content: space-around;
@@ -401,14 +402,16 @@ timeWorked {
   width: 90vw;
 }
 #theClock {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 42vh;
-  width: 43vh;
+  width: 100vw;
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  margin-top: -3vh;
-  margin-left: 3vw;
+  padding-bottom: 5vh;
+  margin-left: -5vh;
 }
 
 #theLoginBottom {
@@ -424,7 +427,7 @@ timeWorked {
 
 .clock {
   border-radius: 50%;
-  background: #000619 url('/img/theBestClock.png') no-repeat center;
+  background: #000619 url('') no-repeat center;
   background-size: 88%;
   height: 20em;
   padding-bottom: 31%;
@@ -525,6 +528,7 @@ timeWorked {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .adminBox s {
   font-size: 7vh;
@@ -603,11 +607,11 @@ timeWorked {
 .employeesSection li {
   width: 100%;
   padding: 1vh;
-  font-size: 7vh;
+  font-size: 6vh;
   font-family: sans-serif;
   color: black;
   background-color: white;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   line-height: 100%;
 }
 
@@ -649,7 +653,7 @@ timeWorked {
   border-style: outset;
   background-color: #000619 !important;
   width: 70vw;
-  font-size: 7vh;
+  font-size: 6vh;
   font-family: sans-serif;
   color: white !important;
   text-decoration: none;
@@ -821,6 +825,70 @@ input {
   word-wrap: break-word;
   width: 90vw;
 }
+
+.employeeLocation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100vh;
+  width: 100vw;
+  padding: 2vh;
+  justify-content: space-around;
+}
+.employeeLocation div {
+  font-size: 4vh;
+  font-family: sans-serif;
+  color: #fff;
+  text-align: center;
+  line-height: 125%;
+}
+.employeeLocation smaller {
+  font-size: 2vh;
+
+}
+.map {
+  height: 65vh;
+  width: 100%;
+  margin-bottom: 1vh;
+
+}
+.map ng-map {
+  height: 65vh;
+  width: 100%;
+
+}
+
+.setLocation {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  width: 100%;
+  padding: 2vh;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vh;
+  text-align: center;
+  line-height: 150%;
+}
+.setLocation input {
+  font-size: 4vh;
+  height: 5vh;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @charset "UTF-8";

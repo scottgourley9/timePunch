@@ -1,5 +1,5 @@
 
-angular.module('timePunch', ['ionic'])
+angular.module('timePunch', ['ionic', 'ngMap'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -98,6 +98,16 @@ angular.module('timePunch', ['ionic'])
   url: '/adminRequests',
   templateUrl: 'views/adminRequests.html',
   controller: 'adminRequestsCtrl'
+})
+.state('employeeLocation', {
+  url: '/employeeLocation',
+  templateUrl: 'views/employeeLocation.html',
+  controller: 'employeeLocationCtrl'
+})
+.state('setLocation', {
+  url: '/setLocation',
+  templateUrl: 'views/setLocation.html',
+  controller: 'setLocationCtrl'
 })
 
 
