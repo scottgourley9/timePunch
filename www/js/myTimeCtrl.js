@@ -9,58 +9,72 @@ angular.module('timePunch').controller('myTimeCtrl', function($ionicModal, $time
   $scope.entireScheduleView = false;
 
   $scope.showThisSunday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theSundayChosen = false;
   }
   $scope.sundayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theSundayChosen = true;
   }
   $scope.showThisMonday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theMondayChosen = false;
   }
   $scope.mondayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theMondayChosen = true;
   }
   $scope.showThisTuesday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theTuesdayChosen = false;
   }
   $scope.tuesdayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theTuesdayChosen = true;
   }
   $scope.showThisWednesday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theWednesdayChosen = false;
   }
   $scope.wednesdayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theWednesdayChosen = true;
   }
   $scope.showThisThursday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theThursdayChosen = false;
   }
   $scope.thursdayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theThursdayChosen = true;
   }
   $scope.showThisFriday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theFridayChosen = false;
   }
   $scope.fridayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theFridayChosen = true;
   }
   $scope.showThisSaturday = function(){
+    $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theSaturdayChosen = false;
   }
   $scope.saturdayDone = function(){
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theSaturdayChosen = true;
   }
@@ -269,9 +283,9 @@ angular.module('timePunch').controller('myTimeCtrl', function($ionicModal, $time
 
   $scope.timeViewClass = [];
   $scope.timeViewClass.push('animated fadeInLeft');
-  $timeout(function(){
-    $scope.timeViewClass.splice(0);
-  }, 1000);
+  // $timeout(function(){
+  //   $scope.timeViewClass.splice(0);
+  // }, 1000);
 
   $scope.weekButton = false;
   $scope.monthButton = true;

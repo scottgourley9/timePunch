@@ -28,6 +28,16 @@
   <div>
    <the style="font-size: 3vh">{{currentAdmin.companyId}}</the>
   </div>
+  <div>Restriction Address</div><br>
+  <section ng-hide="addressHidden"style="margin-top: -5.5vh; text-align: center">
+   <the style="font-size: 2.5vh">{{currentAdmin.setAddress.street}}</the><br>
+   <the style="font-size: 2.5vh">{{currentAdmin.setAddress.city}}</the><br>
+   <the style="font-size: 2.5vh">{{currentAdmin.setAddress.state}}</the><br>
+   <the style="font-size: 2.5vh">{{currentAdmin.setAddress.zip}}</the>
+  </section>
+  <section ng-hide="noneHidden"style="margin-top: -5.5vh; text-align: center">
+    <the style="font-size: 2.5vh">None</the>
+  </section>
 
 </section>
   <section ng-hide="changePasswordPageHidden">

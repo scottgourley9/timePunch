@@ -8,7 +8,8 @@ var adminSchema = new Schema({
   companyId: {type: String, unique: true, require: true},
   setLocationLat: String,
   setLocationLng: String,
-  noLocation: Boolean
+  noLocation: Boolean,
+  setAddress: Object
 })
 
 module.exports = mongoose.model("Admin", adminSchema);

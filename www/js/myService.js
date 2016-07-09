@@ -306,6 +306,14 @@ that.postTheLocation = function(locationObj){
     })
   }
 
+  this.updateAdminAddress = function(address){
+    return $http({
+      method: "PUT",
+      url: '/api/updateAdminAddress/' + this.currentAdmin._id,
+      data: address
+    })
+  }
+
 
 
 

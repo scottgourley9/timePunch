@@ -2,7 +2,7 @@ angular.module('timePunch').controller('adminRequestsCtrl', function($ionicPopup
 $scope.requestListButtons = true;
   $scope.getUserRequestsForAdmin = function(){
     myService.getUserRequestsForAdmin($scope.employeeSelected).then(function(response){
-      $scope.userRequests = response.data;
+      $scope.userRequests = response.data.reverse();
     })
   }
   $scope.getUserRequestsForAdmin();
@@ -77,7 +77,7 @@ $scope.requestListButtons = true;
   }
   $scope.approveIt = function(index){
 
-  
+
     if($scope.userRequests[index].requestType === "Fix Time"){
     var theDay = (new Date($scope.userRequests[index].date)).toDateString();
     var modifiedForTime = [{

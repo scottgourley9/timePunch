@@ -1,4 +1,4 @@
-<section class="employeeLocation">
+<section class="employeeLocation" ng-hide="employeeLocationHidden">
   <div>
     Last Updated<br> {{userLocations[userLocations.length - 1].date | date: 'shortDate'}} &nbsp;{{userLocations[userLocations.length - 1].date | date: 'shortTime'}} <br>
     <smaller>ONLY TRACKS WHILE USER IS CLOCKED IN</smaller>
@@ -9,9 +9,13 @@
 
   <div class="map"map-lazy-load="https://maps.google.com/maps/api/js">
     <ng-map zoom="12" center="[{{userLocations[userLocations.length - 1].latitude}},{{userLocations[userLocations.length - 1].longitude}}]">
-      <marker position="[{{userLocations[userLocations.length - 1].latitude}},{{userLocations[userLocations.length - 1].longitude}}]" title="employee" animation="Animation.DROP"></marker>
+      <marker position="[{{userLocations[userLocations.length - 1].latitude}},{{userLocations[userLocations.length - 1].longitude}}]" title="employee" ></marker>
     </ng-map>
 </div>
 
-  <button class="backButton"type="button" ng-click="backLocationButton()">Back</button>
+  <button class="backButton "type="button" ng-click="backLocationButton()">Back</button>
 </section>
+<!-- <section ng-hide="spinnerLocationHidden"class="spinnerSection">
+  <h1 style="color: white">Checking Location</h1>
+  <ion-spinner class="spinner-energized"icon="dots"></ion-spinner>
+</section> -->

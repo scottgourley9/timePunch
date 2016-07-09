@@ -450,6 +450,16 @@ app.put('/api/noRestriction/:id', function(req, res){
   })
 })
 
+app.put('/api/updateAdminAddress/:id', function(req, res){
+  Admin.findByIdAndUpdate(req.params.id, {$set: {setAddress: req.body}}, function(err, theRes){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+      res.status(200).json(theRes)
+    }
+  })
+})
 
 
 

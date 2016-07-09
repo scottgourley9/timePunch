@@ -27,18 +27,20 @@
 
   <section class="newRequestTypeButtons"ng-hide="newRequestTypeButtons">
     <h1 style="color: white"><u>Edit Request Type</u></h1>
-    <input type="radio" style="width: 5vh; height: 5vh"name="button"value="Fix Time"ng-model="request.requestType">Fix Time
-    <input type="radio" style="width: 5vh; height: 5vh"name="button"value="Time Off"ng-model="request.requestType">Time Off
-    <section class="backButtonsAndLogoutButtonSection">
-    <button class="backButton"type="button" name="button"ng-click="backSelectedSection()">Back</button>
-    <button class="backButton"type="button" name="button"ng-click="showSelectedSection(request.requestType)">Next</button>
-  </section>
-  </section>
+    Fix Time<input type="radio" style="width: 5vh; height: 5vh"name="button"value="Fix Time"ng-model="request.requestType">
+    Time Off<input type="radio" style="width: 5vh; height: 5vh"name="button"value="Time Off"ng-model="request.requestType">
 
+  </section>
+  <section ng-hide="newRequestTypeButtons"class="backButtonsAndLogoutButtonSection">
+  <button class="backButton"type="button" name="button"ng-click="backSelectedSection()">Back</button>
+  <button class="backButton"type="button" name="button"ng-click="showSelectedSection(request.requestType)">Next</button>
+  </section>
 
 
   <section ng-hide="fixTimeSection"class="requestSection">
     <!-- <h1 style="font-size: 5vh"><u>Fix Time</u></h1> -->
+    <h2>Edit Description</h2>
+    <textarea ng-model="request.description"></textarea>
     <h2>Edit Date</h2>
     <label class='item item-input'>
 
@@ -49,26 +51,27 @@
       <b style="margin-bottom: -5vh !important">Correct IN</b><input type="time"ng-model="request.timeIn">
       <b style="margin-bottom: -5vh !important">Correct OUT</b><input type="time"ng-model="request.timeOut">
 
-    <h2>Edit Description</h2>
-    <textarea ng-model="request.description"></textarea>
-    <section class="backButtonsAndLogoutButtonSection">
-    <button class="backButton"type="button" name="button"ng-click="backRequest()">Back</button>
-    <button class="backButton"type="button" ng-click="editRequest(request)">Submit Edit</button>
+
+
   </section>
-  </section>
+  <section ng-hide="fixTimeSection"class="backButtonsAndLogoutButtonSection">
+  <button class="backButton"type="button" name="button"ng-click="backRequest()">Back</button>
+  <button class="backButton"type="button" ng-click="editRequest(request)">Submit Edit</button>
+</section>
   <section ng-hide="timeOffSection"class="requestSection">
     <!-- <h1 style="font-size: 5vh"><u>Time Off</u></h1> -->
+    <h2>Request Description</h2>
+    <textarea ng-model="request.description"></textarea>
     <h2>Date of Request</h2>
     <label class='item item-input'>
     <input type="date" ng-model="request.date">
   </label>
-    <h2>Request Description</h2>
-    <textarea ng-model="request.description"></textarea>
-    <section class="backButtonsAndLogoutButtonSection">
-    <button class="backButton"type="button" name="button"ng-click="backRequest(request)">Back</button>
-    <button class="backButton"type="button" ng-click="editRequest(request)">Submit Edit</button>
-  </section>
-  </section>
 
+
+  </section>
+  <section ng-hide="timeOffSection"class="backButtonsAndLogoutButtonSection">
+  <button class="backButton"type="button" name="button"ng-click="backRequest(request)">Back</button>
+  <button class="backButton"type="button" ng-click="editRequest(request)">Submit Edit</button>
+  </section>
 
 </section>

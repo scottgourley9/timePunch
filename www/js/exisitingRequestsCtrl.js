@@ -2,7 +2,7 @@ angular.module('timePunch').controller('exisitingRequestsCtrl', function($ionicP
   $scope.requestListButtons = true;
   $scope.getRequests = function(){
     myService.getRequests().then(function(response){
-      $scope.requests = response.data;
+      $scope.requests = response.data.reverse();
     })
   };
   $scope.getRequests();

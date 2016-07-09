@@ -2,6 +2,7 @@ angular.module('timePunch').controller('setLocationCtrl', function($ionicPopup, 
   $scope.submitAddress = function(address){
     myService.setAddress(address).then(function(response){
       if(response){
+        myService.updateAdminAddress(address);
         $ionicPopup.alert({
          title: "Clock IN's Restricted to Address",
          template: '<center>Users can ONLY CLOCK IN when close to this Address</center>'

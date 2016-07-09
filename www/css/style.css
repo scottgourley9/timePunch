@@ -1,5 +1,7 @@
+
+
 nav {
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 15vh;
   width: 100%;
   display: flex;
@@ -13,7 +15,7 @@ nav {
 }
 
 #theBody {
-  background-color: #000619;
+  background-color: #0C1C36;
 
 }
 .adminRequestBody {
@@ -26,7 +28,7 @@ nav {
 #a {
   width: 75vw;
   height: 60vh;
-  background-color: #000619;
+  background-color: #0C1C36;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -37,7 +39,7 @@ nav {
   z-index: 100;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-color: #FFBF00;
+  border-color: #387ef5;
   border-width: medium;
   border-style: outset;
   border-radius: 10px;
@@ -53,14 +55,14 @@ a {
   font-size: 6vh;
   font-weight: bold;
   font-family: sans-serif;
-  color: #FFBF00;
+  color: #387ef5;
   height: 7vh;
   display: flex;
   align-items: center;
 
 }
 .loginSection {
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -80,8 +82,9 @@ input {
   font-size: 10vh;
   font-weight: bold;
   font-family: sans-serif;
-  color: #FFBF00;
+  color: #387ef5;
   text-align: center;
+
 
 }
 #forgotten {
@@ -91,24 +94,24 @@ input {
 .forgot {
   font-size: 3vh;
   color: white;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .thebuttons {
-  background-color: #FFBF00;
-  font-size: 5vh;
+  background-color: #0C1C36;
+  font-size: 4.5vh;
   font-weight: bold;
-  width: 42vw;
-
+  width: 40vw;
   font-family: sans-serif;
-  border-radius: 10px;
-  border-width: medium;
-  border-color: #000619;
   padding-bottom: 10px;
   padding-top: 10px;
-
-
+  color: white;
+  border-radius: 10px;
+  border-color: #387ef5;
+  border-width: thick;
+  border-style: outset;
 
 }
+
 .buttons {
   width: 100%;
   display: flex;
@@ -117,7 +120,7 @@ input {
 
 }
 #clockSection {
-  background-color: #000619;
+  background-color: #0C1C36;
   color: white;
   font-family: sans-serif;
   font-size: 3vh;
@@ -141,14 +144,14 @@ input {
   align-content: space-around;
 }
 .clockIns {
-  background-color: #FFBF00;
+  background-color: #387ef5;
   font-size: 5vh;
   width: 75vw;
   font-weight: bold;
   font-family: sans-serif;
   border-radius: 10px;
   border-width: medium;
-  border-color: #000619;
+  border-color: #0C1C36;
 
   z-index: 0;
 }
@@ -186,7 +189,7 @@ span {
   color: white;
 }
 .requestSection {
-  height: 85vh;
+  height: 70vh;
   width: 100vw;
   text-align: center;
   display: flex;
@@ -194,6 +197,7 @@ span {
   align-items: center;
   flex-direction: column;
 }
+
 textarea {
   color: black !important;
   font-size: 4vh !important;
@@ -209,7 +213,7 @@ textarea {
   height: 5vh;
 }
 .viewBody {
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 85vh;
   color: white;
   font-family: sans-serif;
@@ -236,7 +240,7 @@ input[type=date]{
   border-radius: 10px;
 }
 #scheduleView {
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 85vh;
   color: white;
   font-family: sans-serif;
@@ -279,7 +283,7 @@ timeWorked {
   text-align: center;
   margin-bottom: 1vh;
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
 
 }
 .weekBox {
@@ -332,7 +336,7 @@ timeWorked {
 }
 
 .forgotBody {
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 100vh;
   color: white;
   font-family: sans-serif;
@@ -364,13 +368,13 @@ timeWorked {
   margin-bottom: 4vh;
 }
 .topScheduleButton {
-  background-color: #FFBF00;
+  background-color: #387ef5;
   font-size: 4vh;
   font-weight: bold;
   font-family: sans-serif;
   border-radius: 10px;
   border-width: medium;
-  border-color: #000619;
+  border-color: #0C1C36;
 }
 .monthBox {
   display: flex;
@@ -427,7 +431,7 @@ timeWorked {
 
 .clock {
   border-radius: 50%;
-  background: #000619 url('') no-repeat center;
+  background: #0C1C36 url('/img/theOne.png') no-repeat center;
   background-size: 88%;
   height: 20em;
   padding-bottom: 31%;
@@ -436,7 +440,7 @@ timeWorked {
 }
 
 .clock.simple:after {
-  background: #FFBF00;
+  background: #387ef5;
   border-radius: 50%;
   content: "";
   position: absolute;
@@ -455,7 +459,7 @@ timeWorked {
   left: 0;
 }
 .hours {
-  background: #FFBF00;
+  background: #0C1C36;
   height: 20%;
   left: 48.75%;
   position: absolute;
@@ -464,7 +468,7 @@ timeWorked {
   width: 2.5%;
 }
 .minutes {
-  background: #FFBF00;
+  background: #0C1C36;
   height: 40%;
   left: 49%;
   position: absolute;
@@ -473,7 +477,7 @@ timeWorked {
   width: 2%;
 }
 .seconds {
-  background: #FFBF00;
+  background: red;
   height: 45%;
   left: 49.5%;
   position: absolute;
@@ -501,7 +505,7 @@ timeWorked {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 85vh;
   flex-direction: column;
   justify-content: space-around;
@@ -510,16 +514,17 @@ timeWorked {
 }
 
 
+
 .adminControl {
   font-size: 10vh;
   font-weight: bold;
   font-family: sans-serif;
-  color: #FFBF00;
+  color: #387ef5;
   text-align: center;
 }
 .adminBox {
   border-radius: 10px;
-  border-color: #FFBF00;
+  border-color: #387ef5;
   border-width: thick;
   border-style: outset;
   height: 20vh;
@@ -570,7 +575,7 @@ timeWorked {
 .employeesSection {
   display: flex;
 
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 85vh;
   flex-direction: column;
 
@@ -586,7 +591,7 @@ timeWorked {
   font-size: 7vh;
   font-weight: bold;
   font-family: sans-serif;
-  color: #FFBF00;
+  color: #387ef5;
   text-align: center;
 }
 .employeeTitle {
@@ -624,10 +629,10 @@ timeWorked {
 }
 .backButton {
   border-radius: 10px;
-  border-color: #FFBF00;
+  border-color: #387ef5;
   border-width: thick;
   border-style: outset;
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 12vh;
   width: 40vw;
   font-size: 3vh;
@@ -648,10 +653,10 @@ timeWorked {
 
 .empInfo {
   border-radius: 10px;
-  border-color: #FFBF00;
+  border-color: #387ef5;
   border-width: thick;
   border-style: outset;
-  background-color: #000619 !important;
+  background-color: #0C1C36 !important;
   width: 70vw;
   font-size: 6vh;
   font-family: sans-serif;
@@ -661,7 +666,7 @@ timeWorked {
 
 }
 .empName {
-  background-color: #000619 !important;
+  background-color: #0C1C36 !important;
   color: white !important;
   text-align: center;
 }
@@ -675,11 +680,12 @@ timeWorked {
   font-family: sans-serif;
   color: #fff;
   font-weight: bold;
-  height: 70vh;
+  height: 85vh;
   width: 100vw;
   align-items: center;
 
 }
+
 .profileInfo div {
   display: flex;
   flex-direction: column;
@@ -698,6 +704,50 @@ timeWorked {
   width: 90vw;
 
 }
+.profileInfoSettings {
+  display: flex;
+  padding: 2vh;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 5vh;
+  font-family: sans-serif;
+  color: #fff;
+  font-weight: bold;
+  height: 70vh;
+  width: 100vw;
+  align-items: center;
+
+}
+.profileInfoSettings div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 100%;
+  text-align: center;
+  line-height: 100%;
+
+
+}
+.adminRequestsBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85vh;
+    width: 100%;
+    overflow: scroll;
+    padding-top: 2vh;
+}
+.adminRequestsBody ion-list {
+  width: 90vw;
+}
+.profileInfoSettings input {
+  font-size: 4vh;
+  height: 6vh;
+  width: 90vw;
+
+}
 
 input[type="time"]::-webkit-clear-button {
     display: none;
@@ -706,7 +756,7 @@ input[type="date"]::-webkit-clear-button {
     display: none;
 }
 input[type="time"] {
-  background-color: #000619;
+  background-color: #0C1C36;
   font-size: 5vh;
   text-align: center;
   height: 10vh;
@@ -715,7 +765,7 @@ input[type="time"] {
   line-height: 300%;
 }
 .scheduleSelectedDay input {
-  background-color: #000619;
+  background-color: #0C1C36;
   font-size: 9vh;
   text-align: center;
   height: 10vh;
@@ -746,7 +796,7 @@ input[type="time"] {
 .newRequestTypeButtons {
   display: flex;
   flex-direction: column;
-  height: 85vh;
+  height: 70vh;
   justify-content: space-around;
   align-items: center;
   width: 100%;
@@ -775,7 +825,7 @@ input {
   display: flex;
   flex-direction: column;
   height: 70vh;
-  width: 100vw;
+  width: 90vw;
   align-items: center;
   position: relative;
   margin-bottom: 2vh;
@@ -793,10 +843,10 @@ input {
 
 .helpTopics li{
   border-radius: 10px;
-  border-color: #FFBF00;
+  border-color: #387ef5;
   border-width: thick;
   border-style: outset;
-  background-color: #000619;
+  background-color: #0C1C36;
   height: 10vh;
   width: 80vw;
   font-size: 5vh;
@@ -882,7 +932,7 @@ input {
   width: 40vh;
   height: 40vh;
   stroke: #444;
-  fill: #FFBF00;
+  fill: #387ef5;
 }
 .spinnerSection {
   height: 85vh;
@@ -893,7 +943,13 @@ input {
   align-items: center;
 }
 
+.bringCloser {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 
+}
 
 
 

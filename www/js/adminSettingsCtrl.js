@@ -22,7 +22,14 @@ $scope.changeCompanyIdPageHidden = true;
       $scope.currentAdmin = myService.currentAdmin;
       $scope.profileOfAdmin = false;
       $scope.theAdminView = true;
-
+      if($scope.currentAdmin.noLocation){
+        $scope.addressHidden = true;
+        $scope.noneHidden = false;
+      }
+      else {
+        $scope.addressHidden = false;
+        $scope.noneHidden = true;
+      }
   }
   $scope.changePasswordPage = function(){
     $scope.hideDemButtons = true;
