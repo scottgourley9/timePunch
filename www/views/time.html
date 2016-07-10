@@ -34,17 +34,20 @@ SUN  {{sunday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{sundayHours}}:{
 </div>
 <div ng-hide="theMondayChosen"class="bigBox">
 MON  {{monday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{mondayHours}}:{{mondayMinutes}}:{{mondaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesMonday track by $index" ><mondayTime ng-click="mondayEdit($index)">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</mondayTime><input type="time" ng-show="$index === mondayTimeSelected" ng-model="newTimeMonday"><img style="margin-right: 4vh"src="img/redX.png" type="button" ng-click="xPressedMonday()" ng-show="$index === sundayTimeSelected"</><img style="margin-left: 4vh"src="img/greenCheck.png" type="button" ng-click="tempChangeMonday(newTimeMonday)"ng-show="$index === sundayTimeSelected"/></div>
+<button class="backButton"type="button" ng-hide="doneButtonHidden"ng-click="mondayDone()">Done</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="mondayDone()">Cancel</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="mondayChanges()">Submit Changes</button>
 </div>
 <div ng-hide="theTuesdayChosen"class="bigBox">
 TUE  {{tuesday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{tuesdayHours}}:{{tuesdayMinutes}}:{{tuesdaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesTuesday track by $index" ><mondayTime ng-click="tuesdayEdit($index)">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</mondayTime><input type="time" ng-show="$index === tuesdayTimeSelected" ng-model="newTimeTuesday"><img style="margin-right: 4vh"src="img/redX.png" type="button" ng-click="xPressedTuesday()" ng-show="$index === tuesdayTimeSelected"</><img style="margin-left: 4vh"src="img/greenCheck.png" type="button" ng-click="tempChangeTuesday(newTimeTuesday)"ng-show="$index === tuesdayTimeSelected"/></div>
+<button class="backButton"type="button" ng-hide="doneButtonHidden"ng-click="tuesdayDone()">Done</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="tuesdayDone()">Cancel</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="tuesdayChanges()">Submit Changes</button>
 
 </div>
 <div ng-hide="theWednesdayChosen"class="bigBox">
 WED  {{wednesday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{wednesdayHours}}:{{wednesdayMinutes}}:{{wednesdaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesWednesday track by $index" ><mondayTime ng-click="wednesdayEdit($index)">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</mondayTime><input type="time" ng-show="$index === wednesdayTimeSelected" ng-model="newTimeWednesday"><img style="margin-right: 4vh"src="img/redX.png" type="button" ng-click="xPressedWednesday()" ng-show="$index === wednesdayTimeSelected"</><img style="margin-left: 4vh"src="img/greenCheck.png" type="button" ng-click="tempChangeWednesday(newTimeWednesday)"ng-show="$index === wednesdayTimeSelected"/></div>
+<button class="backButton"type="button" ng-hide="doneButtonHidden"ng-click="wednesdayDone()">Done</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="wednesdayDone()">Cancel</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="wednesdayChanges()">Submit Changes</button>
 
@@ -58,6 +61,7 @@ THU  {{thursday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{thursdayHours
 </div>
 <div ng-hide="theFridayChosen"class="bigBox">
 FRI  {{friday._d | date: 'shortDate'}}<br><u>Time Worked:&nbsp;{{fridayHours}}:{{fridayMinutes}}:{{fridaySeconds}}</u><div class='timeWeek' ng-repeat="time in timesFriday track by $index" ><mondayTime ng-click="fridayEdit($index)">{{time.inOrOut}}:&nbsp;{{time.timeStamp | date: 'mediumTime'}}</mondayTime><input type="time" ng-show="$index === fridayTimeSelected" ng-model="newTimeFriday"><img style="margin-right: 4vh"src="img/redX.png" type="button" ng-click="xPressedFriday()" ng-show="$index === fridayTimeSelected"</><img style="margin-left: 4vh"src="img/greenCheck.png" type="button" ng-click="tempChangeFriday(newTimeFriday)"ng-show="$index === fridayTimeSelected"/></div>
+<button class="backButton"type="button" ng-hide="doneButtonHidden"ng-click="fridayDone()">Done</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="fridayDone()">Cancel</button>
 <button class="backButton"type="button" ng-hide="cancelAndSubmitButtonsHidden"ng-click="fridayChanges()">Submit Changes</button>
 
