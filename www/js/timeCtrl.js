@@ -1,5 +1,7 @@
 angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeout, $scope, $state, myService){
 
+
+
   $scope.menu = function(){
     $state.go('admin')
   }
@@ -18,6 +20,138 @@ angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeou
 
 
 
+
+
+
+  $scope.cancelAndSubmitButtonsHidden = true;
+  $scope.doneButtonHidden = false;
+
+  $scope.sundayTimeSelected = -1;
+  $scope.sundayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.sundayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+  }
+  $scope.tempChangeSunday = function(newTime){
+  $scope.sundayTimeSelected = -1;
+  $scope.timesSunday[$scope.theIndex].timeStamp = newTime;
+  $scope.getTotalWorkWeek();
+  }
+  $scope.xPressedSunday = function(){
+  $scope.sundayTimeSelected = -1;
+  }
+
+
+
+  $scope.mondayTimeSelected = -1;
+$scope.mondayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.mondayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+}
+$scope.tempChangeMonday = function(newTime){
+  $scope.mondayTimeSelected = -1;
+  $scope.timesMonday[$scope.theIndex].timeStamp = newTime;
+  $scope.getTotalWorkWeek();
+}
+$scope.xPressedMonday = function(){
+  $scope.mondayTimeSelected = -1;
+}
+
+
+
+$scope.tuesdayTimeSelected = -1;
+$scope.tuesdayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.tuesdayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+}
+$scope.tempChangeTuesday = function(newTime){
+$scope.tuesdayTimeSelected = -1;
+$scope.timesTuesday[$scope.theIndex].timeStamp = newTime;
+$scope.getTotalWorkWeek();
+}
+$scope.xPressedTuesday = function(){
+$scope.tuesdayTimeSelected = -1;
+}
+
+
+
+$scope.wednesdayTimeSelected = -1;
+$scope.wednesdayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.wednesdayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+}
+$scope.tempChangeWednesday = function(newTime){
+$scope.wednesdayTimeSelected = -1;
+$scope.timesWednesday[$scope.theIndex].timeStamp = newTime;
+$scope.getTotalWorkWeek();
+}
+$scope.xPressedWednesday = function(){
+$scope.wednesdayTimeSelected = -1;
+}
+
+
+
+$scope.thursdayTimeSelected = -1;
+$scope.thursdayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.thursdayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+}
+$scope.tempChangeThursday = function(newTime){
+$scope.thursdayTimeSelected = -1;
+$scope.timesThursday[$scope.theIndex].timeStamp = newTime;
+$scope.getTotalWorkWeek();
+}
+$scope.xPressedThursday = function(){
+$scope.thursdayTimeSelected = -1;
+}
+
+
+
+$scope.fridayTimeSelected = -1;
+$scope.fridayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.fridayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+}
+$scope.tempChangeFriday = function(newTime){
+$scope.fridayTimeSelected = -1;
+$scope.timesFriday[$scope.theIndex].timeStamp = newTime;
+$scope.getTotalWorkWeek();
+}
+$scope.xPressedFriday = function(){
+$scope.fridayTimeSelected = -1;
+}
+
+
+
+$scope.saturdayTimeSelected = -1;
+$scope.saturdayEdit = function(index){
+  $scope.theIndex = index;
+  $scope.saturdayTimeSelected = index;
+  $scope.cancelAndSubmitButtonsHidden = false;
+  $scope.doneButtonHidden = true;
+}
+$scope.tempChangeSaturday = function(newTime){
+$scope.saturdayTimeSelected = -1;
+$scope.timesSaturday[$scope.theIndex].timeStamp = newTime;
+$scope.getTotalWorkWeek();
+}
+$scope.xPressedSaturday = function(){
+$scope.saturdayTimeSelected = -1;
+}
+
+
+
   $scope.theSundayChosen = true;
   $scope.theMondayChosen = true;
   $scope.theTuesdayChosen = true;
@@ -32,84 +166,114 @@ angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeou
     $scope.entireScheduleView = true;
     $scope.theSundayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedSunday();
   }
   $scope.sundayDone = function(){
-    $scope.timeViewClass.push('animated zoomOut');
+    $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theSundayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
+
   }
   $scope.showThisMonday = function(){
     $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theMondayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedMonday();
   }
   $scope.mondayDone = function(){
     $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theMondayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
+
   }
   $scope.showThisTuesday = function(){
     $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theTuesdayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedTuesday();
   }
   $scope.tuesdayDone = function(){
     $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theTuesdayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
   }
   $scope.showThisWednesday = function(){
     $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theWednesdayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedWednesday();
   }
   $scope.wednesdayDone = function(){
     $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theWednesdayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
   }
   $scope.showThisThursday = function(){
     $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theThursdayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedThursday();
   }
   $scope.thursdayDone = function(){
     $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theThursdayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
   }
   $scope.showThisFriday = function(){
     $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theFridayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedFriday();
   }
   $scope.fridayDone = function(){
     $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theFridayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
   }
   $scope.showThisSaturday = function(){
     $scope.timeViewClass.splice(0);
     $scope.entireScheduleView = true;
     $scope.theSaturdayChosen = false;
     $scope.buttonsBottomHidden = true;
+    $scope.cancelAndSubmitButtonsHidden = true;
+    $scope.doneButtonHidden = false;
+    $scope.xPressedSaturday();
   }
   $scope.saturdayDone = function(){
     $scope.timeViewClass.push('animated fadeInLeft');
     $scope.entireScheduleView = false;
     $scope.theSaturdayChosen = true;
     $scope.buttonsBottomHidden = false;
+    $scope.getCurrentEmployeeTimes();
   }
 
 
@@ -173,6 +337,7 @@ angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeou
 
 
       }
+      $scope.getTotalWorkWeek = function(){
       $timeout(function(){
         var totalInTimeSeconds = 0;
         var totalOutTimeSeconds = 0;
@@ -307,6 +472,8 @@ angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeou
         $scope.totalWeekSeconds = Math.floor(totalWeek-(($scope.totalWeekHours*3600)+($scope.totalWeekMinutes*60)));
 
       }, 8)
+    }
+    $scope.getTotalWorkWeek();
 
     })
   }

@@ -953,7 +953,10 @@ input {
 
 
 
-
+img {
+  height: 7vh;
+  width: 7vh;
+}
 
 
 
