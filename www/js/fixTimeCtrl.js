@@ -46,6 +46,28 @@ angular.module('timePunch').controller('fixTimeCtrl', function($ionicPopup, $sco
     $scope.timeOffSection = true;
   }
   $scope.newRequest = function(theRequest){
+    if(theRequest.requestType === "Time Off"){
+      myService.newRequest(theRequest).then(function(response){
+        if(response){
+          $scope.mainPageButtons = false;
+          $scope.newRequestTypeButtons = true;
+          $scope.fixTimeSection = true;
+          $scope.timeOffSection = true;
+          $scope.request = "";
+          $ionicPopup.alert({
+           title: 'Request Submitted',
+           template: '<center>Admin to approve</center>'
+         });
+        }
+        else{
+          $ionicPopup.alert({
+            title: 'Request Error'
+
+          })
+        }
+      })
+    }
+    else {
     var d = new Date(theRequest.date);
     var hours = theRequest.timeIn.getHours();
     var minutes = theRequest.timeIn.getMinutes();
@@ -82,5 +104,5 @@ angular.module('timePunch').controller('fixTimeCtrl', function($ionicPopup, $sco
       }
     })
   }
-
+}
 })
