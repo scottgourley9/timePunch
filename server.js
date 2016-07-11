@@ -20,7 +20,7 @@ var TheLocation = require('./models/location.js');
 
 app.use(express.static(__dirname + '/www'));
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(session({
   secret: 'whatever1234',
   saveUninitialized: false,
