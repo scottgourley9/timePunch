@@ -4,11 +4,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/timePunch');
 var cors = require('cors');
-var corsOptions = {
-  origin: 'http://localhost:3000'
-}
+// var corsOptions = {
+//   origin: 'http://localhost:3000'
+// }
 var app = express();
-var port = 4000;
+var port = 80;
 
 var Time = require('./models/time.js');
 var User = require('./models/user.js');
