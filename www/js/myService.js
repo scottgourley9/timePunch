@@ -314,6 +314,14 @@ that.postTheLocation = function(locationObj){
     })
   }
 
+  this.updateTimeStamp = function(timeInfoArr){
+    return $http({
+      method: "PUT",
+      url: '/api/updateTimeStamp',
+      data: timeInfoArr
+    })
+  }
+
 
 
 

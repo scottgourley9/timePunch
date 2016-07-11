@@ -283,6 +283,7 @@ app.get('/api/timeStamps/:id', function(req, res){
 })
 
 app.post('/api/request', function(req, res){
+  console.log(req.body);
   Request.create(req.body, function(err, theRequest){
     if(err){
       res.status(500).json(false)
@@ -459,6 +460,19 @@ app.put('/api/updateAdminAddress/:id', function(req, res){
       res.status(200).json(theRes)
     }
   })
+})
+
+app.put('/api/updateTimeStamp', function(req, res){
+
+    Time.findByIdAndUpdate(req.body.id, {$set: {timeStamp: req.body.timeStamp}}, function(err, update){
+      if(err){
+        res.status(500).json(err);
+      }
+      else {
+        res.status(200).json(update)
+      }
+})
+
 })
 
 

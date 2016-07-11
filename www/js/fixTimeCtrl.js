@@ -46,6 +46,22 @@ angular.module('timePunch').controller('fixTimeCtrl', function($ionicPopup, $sco
     $scope.timeOffSection = true;
   }
   $scope.newRequest = function(theRequest){
+    var d = new Date(theRequest.date);
+    var hours = theRequest.timeIn.getHours();
+    var minutes = theRequest.timeIn.getMinutes();
+    var seconds = theRequest.timeIn.getSeconds();
+    d.setHours(hours);
+    d.setMinutes(minutes);
+    d.setSeconds(seconds);
+    theRequest.timeIn = d;
+    var dd = new Date(theRequest.date);
+    var outhours = theRequest.timeOut.getHours();
+    var outminutes = theRequest.timeOut.getMinutes();
+    var outseconds = theRequest.timeOut.getSeconds();
+    dd.setHours(outhours);
+    dd.setMinutes(outminutes);
+    dd.setSeconds(outseconds);
+    theRequest.timeOut = dd;
     myService.newRequest(theRequest).then(function(response){
       if(response){
         $scope.mainPageButtons = false;

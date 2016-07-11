@@ -6,25 +6,18 @@ angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeou
     $state.go('admin')
   }
 
-
-
-
   $scope.back = function(){
     myService.employeeSectionShowing = false;
-
     myService.backButtonsAndLogoutButtonSectionHidden = false;
-
     $state.go('employees');
-
   }
-
-
-
 
 
 
   $scope.cancelAndSubmitButtonsHidden = true;
   $scope.doneButtonHidden = false;
+
+
 
   $scope.sundayTimeSelected = -1;
   $scope.sundayEdit = function(index){
@@ -32,11 +25,27 @@ angular.module('timePunch').controller('timeCtrl', function($ionicModal, $timeou
   $scope.sundayTimeSelected = index;
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
+
   }
-  $scope.tempChangeSunday = function(newTime){
+  $scope.tempChangeSunday = function(newTime, actualDay){
   $scope.sundayTimeSelected = -1;
   $scope.timesSunday[$scope.theIndex].timeStamp = newTime;
-  $scope.getTotalWorkWeek();
+  var hours = newTime.getHours();
+  var minutes = newTime.getMinutes();
+  var secs = newTime.getSeconds();
+  var d = new Date(actualDay);
+  var theTimeStampId = $scope.timesSunday[$scope.theIndex]._id;
+  d.setHours(hours);
+  d.setMinutes(minutes);
+  d.setSeconds(secs);
+  var dayInfoObj = {
+    id: theTimeStampId,
+    timeStamp: d
+  }
+  myService.updateTimeStamp(dayInfoObj).then(function(response){
+    $scope.getCurrentEmployeeTimes();
+  })
+
   }
   $scope.xPressedSunday = function(){
   $scope.sundayTimeSelected = -1;
@@ -51,10 +60,24 @@ $scope.mondayEdit = function(index){
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
 }
-$scope.tempChangeMonday = function(newTime){
+$scope.tempChangeMonday = function(newTime, actualDay){
   $scope.mondayTimeSelected = -1;
   $scope.timesMonday[$scope.theIndex].timeStamp = newTime;
-  $scope.getTotalWorkWeek();
+  var hours = newTime.getHours();
+  var minutes = newTime.getMinutes();
+  var secs = newTime.getSeconds();
+  var d = new Date(actualDay);
+  var theTimeStampId = $scope.timesMonday[$scope.theIndex]._id;
+  d.setHours(hours);
+  d.setMinutes(minutes);
+  d.setSeconds(secs);
+  var dayInfoObj = {
+    id: theTimeStampId,
+    timeStamp: d
+  }
+  myService.updateTimeStamp(dayInfoObj).then(function(response){
+    $scope.getCurrentEmployeeTimes();
+  })
 }
 $scope.xPressedMonday = function(){
   $scope.mondayTimeSelected = -1;
@@ -69,10 +92,24 @@ $scope.tuesdayEdit = function(index){
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
 }
-$scope.tempChangeTuesday = function(newTime){
+$scope.tempChangeTuesday = function(newTime, actualDay){
 $scope.tuesdayTimeSelected = -1;
 $scope.timesTuesday[$scope.theIndex].timeStamp = newTime;
-$scope.getTotalWorkWeek();
+var hours = newTime.getHours();
+var minutes = newTime.getMinutes();
+var secs = newTime.getSeconds();
+var d = new Date(actualDay);
+var theTimeStampId = $scope.timesTuesday[$scope.theIndex]._id;
+d.setHours(hours);
+d.setMinutes(minutes);
+d.setSeconds(secs);
+var dayInfoObj = {
+  id: theTimeStampId,
+  timeStamp: d
+}
+myService.updateTimeStamp(dayInfoObj).then(function(response){
+  $scope.getCurrentEmployeeTimes();
+})
 }
 $scope.xPressedTuesday = function(){
 $scope.tuesdayTimeSelected = -1;
@@ -87,10 +124,24 @@ $scope.wednesdayEdit = function(index){
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
 }
-$scope.tempChangeWednesday = function(newTime){
+$scope.tempChangeWednesday = function(newTime, actualDay){
 $scope.wednesdayTimeSelected = -1;
 $scope.timesWednesday[$scope.theIndex].timeStamp = newTime;
-$scope.getTotalWorkWeek();
+var hours = newTime.getHours();
+var minutes = newTime.getMinutes();
+var secs = newTime.getSeconds();
+var d = new Date(actualDay);
+var theTimeStampId = $scope.timesWednesday[$scope.theIndex]._id;
+d.setHours(hours);
+d.setMinutes(minutes);
+d.setSeconds(secs);
+var dayInfoObj = {
+  id: theTimeStampId,
+  timeStamp: d
+}
+myService.updateTimeStamp(dayInfoObj).then(function(response){
+  $scope.getCurrentEmployeeTimes();
+})
 }
 $scope.xPressedWednesday = function(){
 $scope.wednesdayTimeSelected = -1;
@@ -105,10 +156,24 @@ $scope.thursdayEdit = function(index){
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
 }
-$scope.tempChangeThursday = function(newTime){
+$scope.tempChangeThursday = function(newTime, actualDay){
 $scope.thursdayTimeSelected = -1;
 $scope.timesThursday[$scope.theIndex].timeStamp = newTime;
-$scope.getTotalWorkWeek();
+var hours = newTime.getHours();
+var minutes = newTime.getMinutes();
+var secs = newTime.getSeconds();
+var d = new Date(actualDay);
+var theTimeStampId = $scope.timesThursday[$scope.theIndex]._id;
+d.setHours(hours);
+d.setMinutes(minutes);
+d.setSeconds(secs);
+var dayInfoObj = {
+  id: theTimeStampId,
+  timeStamp: d
+}
+myService.updateTimeStamp(dayInfoObj).then(function(response){
+  $scope.getCurrentEmployeeTimes();
+})
 }
 $scope.xPressedThursday = function(){
 $scope.thursdayTimeSelected = -1;
@@ -123,10 +188,24 @@ $scope.fridayEdit = function(index){
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
 }
-$scope.tempChangeFriday = function(newTime){
+$scope.tempChangeFriday = function(newTime, actualDay){
 $scope.fridayTimeSelected = -1;
 $scope.timesFriday[$scope.theIndex].timeStamp = newTime;
-$scope.getTotalWorkWeek();
+var hours = newTime.getHours();
+var minutes = newTime.getMinutes();
+var secs = newTime.getSeconds();
+var d = new Date(actualDay);
+var theTimeStampId = $scope.timesFriday[$scope.theIndex]._id;
+d.setHours(hours);
+d.setMinutes(minutes);
+d.setSeconds(secs);
+var dayInfoObj = {
+  id: theTimeStampId,
+  timeStamp: d
+}
+myService.updateTimeStamp(dayInfoObj).then(function(response){
+  $scope.getCurrentEmployeeTimes();
+})
 }
 $scope.xPressedFriday = function(){
 $scope.fridayTimeSelected = -1;
@@ -141,10 +220,24 @@ $scope.saturdayEdit = function(index){
   $scope.cancelAndSubmitButtonsHidden = false;
   $scope.doneButtonHidden = true;
 }
-$scope.tempChangeSaturday = function(newTime){
+$scope.tempChangeSaturday = function(newTime, actualDay){
 $scope.saturdayTimeSelected = -1;
 $scope.timesSaturday[$scope.theIndex].timeStamp = newTime;
-$scope.getTotalWorkWeek();
+var hours = newTime.getHours();
+var minutes = newTime.getMinutes();
+var secs = newTime.getSeconds();
+var d = new Date(actualDay);
+var theTimeStampId = $scope.timesSaturday[$scope.theIndex]._id;
+d.setHours(hours);
+d.setMinutes(minutes);
+d.setSeconds(secs);
+var dayInfoObj = {
+  id: theTimeStampId,
+  timeStamp: d
+}
+myService.updateTimeStamp(dayInfoObj).then(function(response){
+  $scope.getCurrentEmployeeTimes();
+})
 }
 $scope.xPressedSaturday = function(){
 $scope.saturdayTimeSelected = -1;
