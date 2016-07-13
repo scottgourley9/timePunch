@@ -11,7 +11,7 @@ angular.module('timePunch', ['ionic', 'ngMap'])
     }
   });
 })
-
+        
 .config(function($stateProvider, $urlRouterProvider){
 
   $urlRouterProvider.otherwise('/');
