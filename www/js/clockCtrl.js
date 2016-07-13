@@ -5,6 +5,30 @@ angular.module('timePunch').controller('clockCtrl', function($ionicPopup, $timeo
     $scope.outHidden = false;
 
   }
+  var flag = false;
+window.onbeforeunload = function() {
+  if(flag && myService.stillIn) {
+    var day = new Date();
+    var theDay = day.toDateString();
+
+    var dateObj = {
+      day: theDay,
+      timeStamp: day,
+      inOrOut: 'OUT'
+    }
+    myService.postTimeStamp(dateObj).then(function(postTimeResponse){
+      myService.postTimeStampToUser(postTimeResponse);
+})
+
+  }
+  flag = true;
+  $state.go('home');
+
+  $timeout(function(){
+    location.reload()
+
+  }, 500)
+}
 
 
   $scope.myClockSection = [];
@@ -164,7 +188,7 @@ angular.module('timePunch').controller('clockCtrl', function($ionicPopup, $timeo
           $scope.admin = response.data;
           if($scope.admin.noLocation){
             time();
-            
+
               myService.stillIn = true;
               $scope.inTimeStamp = new Date();
               $scope.inHidden = true;
