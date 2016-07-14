@@ -7,6 +7,11 @@ var cors = require('cors');
 var corsOptions = {
   origin: 'http://localhost:3000'
 }
+var moment = require('moment');
+var jwt = require('jwt-simple');
+var key = require('./keys.js');
+
+
 var app = express();
 var port = 4000;
 
@@ -27,8 +32,76 @@ app.use(session({
   resave: false
 }))
 
+
+
+function createJWT(user) {
+ var payload = {
+   sub: user._id,
+   iat: moment().unix(),
+   exp: moment().add(14, 'days').unix()
+ };
+ return jwt.encode(payload, Keys.TOKEN_SECRET);
+},
+userLogin : function(req, res) {
+   console.log(req);
+
+  },
+  userSignUp: function(req, res) {
+    console.log("hi")
+      console.log(req.body);
+      User.findOne({ email: req.body.email }, function(err, existingUser) {
+        if (existingUser) {
+          return res.status(409).send({ message: 'Email is already taken' });
+        }
+        var user = new User({
+          name: req.body.name,
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password
+        });
+        user.save(function(err, result) {
+          if (err) {
+            res.status(500).send({ message: err.message });
+          }
+          console.log(result);
+          res.send({ token: createJWT(result) });
+        });
+      });
+  },
+
+  ensureAuthenticated: function(req, res, next) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.post('/api/user/', function(req, res){
-  req.body.name = req.body.name.toLowerCase();
 
   User.create(req.body, function(err, user){
     if(err){
@@ -37,18 +110,73 @@ app.post('/api/user/', function(req, res){
     else {
       res.status(200).json(true);
     }
+    res.send({ token: createJWT(result) });
   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // req.body.name = req.body.name.toLowerCase();
+  //
+  // User.create(req.body, function(err, user){
+  //   if(err){
+  //     res.status(500).json(err);
+  //   }
+  //   else {
+  //     res.status(200).json(true);
+  //   }
+  // })
 })
 app.get('/api/user/:email/:password', function(req, res){
-  User.findOne({'email': req.params.email}, function(err, user){
-    if(err){
-      res.status(500).json(err);
+  User.findOne({'email': req.params.email}, function(err, user) {
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid email and/or password' });
     }
-    else {
-      res.status(200).json(user)
-    }
+    user.comparePassword(req.params.password, function(err, isMatch) {
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Invalid password' });
+      }
+      res.send({ token: createJWT(user) });
+    });
+  });
 
-  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // User.findOne({'email': req.params.email}, function(err, user){
+  //   if(err){
+  //     res.status(500).json(err);
+  //   }
+  //   else {
+  //     res.status(200).json(user)
+  //   }
+  //
+  // })
 })
 app.get('/api/user/:id', function(req, res){
 
