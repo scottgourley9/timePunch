@@ -17,8 +17,9 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
   this.loginUser = function(employee){
 
     return $http({
-      method: "GET",
-      url: '/api/user/' + employee.email + "/" + employee.password
+      method: "POST",
+      url: '/api/authenticate',
+      data: employee
     })
   }
 
@@ -69,8 +70,9 @@ angular.module('timePunch').service('myService', function($rootScope, $location,
   }
   this.loginAsAdmin = function(admin){
     return $http({
-      method: "GET",
-      url: "/api/admin/" + admin.email
+      method: "POST",
+      url: "/api/authenticateAdmin",
+      data: admin
 
     })
   }

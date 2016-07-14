@@ -1,10 +1,10 @@
 angular.module('timePunch').controller('adminCtrl', function($ionicPopup, $timeout, $state, $scope, myService){
 
-  $scope.loadTheUpdatedAdmin = (function(){
-    myService.loginAsAdmin(myService.currentAdmin).then(function(response){
-      myService.currentAdmin = response.data;
-    })
-  })();
+  // $scope.loadTheUpdatedAdmin = (function(){
+  //   myService.loginAsAdmin(myService.currentAdmin).then(function(response){
+  //     myService.currentAdmin = response.data;
+  //   })
+  // })();
 
 
   $scope.sClassHidden = true;

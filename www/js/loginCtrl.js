@@ -100,8 +100,11 @@ $scope.fakeLoginButton = function() {
 
       myService.currentUser = response.data;
       $scope.employeeName = response.data.name;
-      if(!response){
-        $scope.employee = '';
+      if(response.data.success === false){
+        $ionicPopup.alert({
+          title: response.data.message,
+
+        })
       }
       else {
         $scope.inputHidden = true;
@@ -175,16 +178,18 @@ $scope.fakeLoginButton = function() {
             myService.loginAsAdmin($scope.admin).then(function(response){
               myService.currentAdmin = response.data;
 
-              if(response){
+              if(response.data.success){
                 $scope.loginSectionHidden = true;
                 $state.go('admin');
 
               }
               else{
-                $ionicPopup.alert({
-                  title: 'Either your password is incorrect or you are not authorized as an Administrator',
-                  template: '<center>If you are an Administrator, please check the password and retry</center> <br> <center>If you are not an Administrator, please use the regular Login</center>'
-                })
+                
+                  $ionicPopup.alert({
+                    title: response.data.message,
+
+                  })
+
               }
             })
         }
