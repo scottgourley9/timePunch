@@ -98,7 +98,7 @@ app.post('/api/authenticate', function(req, res){
 })
 })
 app.post('/api/authenticateAdmin', function(req, res){
-  
+
   Admin.findOne({'email': req.body.email}, function(err, admin){
     if (err) throw err;
 
@@ -424,6 +424,18 @@ app.get('/api/getRequests/:id', function(req, res){
     else {
       var userRequests = user.requests
       res.status(200).json(userRequests)
+    }
+  })
+})
+
+app.get('/api/getRequests', function(req, res){
+  Request.find({}).populate('user').exec(function(err, requests){
+    if(err){
+      res.status(500).json(err)
+    }
+    else {
+
+      res.status(200).json(requests)
     }
   })
 })

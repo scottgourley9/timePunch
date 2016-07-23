@@ -109,6 +109,11 @@ angular.module('timePunch', ['ionic', 'ngMap'])
   templateUrl: 'views/setLocation.html',
   controller: 'setLocationCtrl'
 })
+.state('requests', {
+  url: '/requests',
+  templateUrl: 'views/requests.html',
+  controller: 'requestsCtrl'
+})
 
 
 

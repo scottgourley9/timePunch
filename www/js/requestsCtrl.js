@@ -1,11 +1,21 @@
-angular.module('timePunch').controller('adminRequestsCtrl', function($ionicPopup, $state, $scope, myService){
+angular.module('timePunch').controller('requestsCtrl', function($ionicPopup, $scope, myService, $state){
+
+
+
 $scope.requestListButtons = true;
-  $scope.getUserRequestsForAdmin = function(){
-    myService.getUserRequestsForAdmin($scope.employeeSelected).then(function(response){
-      $scope.userRequests = response.data.reverse();
+  $scope.getAllRequests = function(){
+    myService.getAllRequests().then(function(response){
+      $scope.userRequests = [];
+      for (var i = 0; i < response.data.length; i++){
+        if(response.data[i].status === "Pending"){
+          $scope.userRequests.push(response.data[i])
+        }
+      }
+
+
     })
   }
-  $scope.getUserRequestsForAdmin();
+  $scope.getAllRequests();
 
   $scope.flag = false;
   $scope.selected = -1;
@@ -13,6 +23,7 @@ $scope.requestListButtons = true;
     if(!$scope.flag){
     $scope.selected = index;
     $scope.flag = true;
+    $scope.employeeSelected = $scope.userRequests[index].user;
   }
   else {
     $scope.selected = -1;
@@ -23,31 +34,14 @@ $scope.requestListButtons = true;
 
 
 
-  $scope.deleteIt = function(index){
-    if($scope.userRequests[index].status === "Pending"){
-      $ionicPopup.alert({
-       title: 'Can NOT Delete Pending Request',
-       template: '<center>You MUST Approve or Deny before you can Delete<center>'
-     });
-    }
-    else {
-    myService.removeRequestFromUserAdmin($scope.userRequests[index]._id, $scope.employeeSelected).then(function(res){
-      if(res.data){
-        $ionicPopup.alert({
-         title: 'Request Deleted'
-       });
-       $scope.flag = false;
-       $scope.selected = -1;
-       $scope.getUserRequestsForAdmin();
-      }
-      else {
-        $ionicPopup.alert({
-         title: 'Error'
-       });
-      }
-    })
+
+
+  $scope.back = function(){
+    $state.go('admin');
   }
-  }
+
+
+
 
 
   $scope.denyIt = function(index){
@@ -65,7 +59,7 @@ $scope.requestListButtons = true;
        });
        $scope.flag = false;
        $scope.selected = -1;
-       $scope.getUserRequestsForAdmin();
+       $scope.getAllRequests();
       }
       else {
         $ionicPopup.alert({
@@ -73,7 +67,7 @@ $scope.requestListButtons = true;
        });
     }
   })
-}
+  }
   }
   $scope.approveIt = function(index){
 
@@ -104,7 +98,7 @@ $scope.requestListButtons = true;
              });
              $scope.flag = false;
              $scope.selected = -1;
-             $scope.getUserRequestsForAdmin();
+             $scope.getAllRequests();
             }
             else {
               $ionicPopup.alert({
@@ -118,11 +112,11 @@ $scope.requestListButtons = true;
            title: 'Error'
          });
       }
-})
+  })
     })
     })
-}
-else {
+  }
+  else {
   var theShift = {
     day: $scope.userRequests[index].date,
     start: "OFF",
@@ -137,7 +131,7 @@ else {
      });
      $scope.flag = false;
      $scope.selected = -1;
-     $scope.getUserRequestsForAdmin();
+     $scope.getAllRequests();
     }
     else {
       $ionicPopup.alert({
@@ -146,16 +140,11 @@ else {
   }
   })
 
-}
-
-}
-
-
-  $scope.back = function(){
-    myService.employeeSectionShowing = false;
-    myService.backButtonsAndLogoutButtonSectionHidden = false;
-    $state.go('employees');
   }
+
+  }
+
+
 
 
 

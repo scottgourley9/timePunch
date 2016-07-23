@@ -1,5 +1,33 @@
 angular.module('timePunch').controller('loginCtrl', function($timeout, $ionicPopup, $document, $scope, $state, myService){
 
+  var flag = false;
+window.onbeforeunload = function() {
+  if(flag && myService.stillIn) {
+    var day = new Date();
+    var theDay = day.toDateString();
+
+    var dateObj = {
+      day: theDay,
+      timeStamp: day,
+      inOrOut: 'OUT'
+    }
+    myService.postTimeStamp(dateObj).then(function(postTimeResponse){
+      myService.postTimeStampToUser(postTimeResponse);
+})
+
+  }
+  flag = true;
+  $state.go('home');
+
+  $timeout(function(){
+    location.reload()
+
+  }, 500)
+}
+
+
+
+
   $scope.logout = function(){
     var confirmPopup = $ionicPopup.confirm({
    title: 'LOGOUT',
@@ -184,7 +212,7 @@ $scope.fakeLoginButton = function() {
 
               }
               else{
-                
+
                   $ionicPopup.alert({
                     title: response.data.message,
 

@@ -1,10 +1,26 @@
 angular.module('timePunch').controller('adminCtrl', function($ionicPopup, $timeout, $state, $scope, myService){
 
-  // $scope.loadTheUpdatedAdmin = (function(){
-  //   myService.loginAsAdmin(myService.currentAdmin).then(function(response){
-  //     myService.currentAdmin = response.data;
-  //   })
-  // })();
+
+
+  $scope.theRequestsNumberHidden = true;
+
+  $timeout(function(){
+    $scope.theRequestsNumberHidden = false;
+  }, 1250)
+
+  $scope.getAllRequests = function(){
+    myService.getAllRequests().then(function(response){
+      $scope.requests = [];
+      for (var i = 0; i < response.data.length; i++){
+        if(response.data[i].status === "Pending"){
+          $scope.requests.push(response.data[i])
+        }
+      }
+      $scope.pendingRequests = $scope.requests.length;
+
+    })
+  }
+  $scope.getAllRequests();
 
 
   $scope.sClassHidden = true;
@@ -40,6 +56,9 @@ angular.module('timePunch').controller('adminCtrl', function($ionicPopup, $timeo
 
     $scope.adminSettings = function(){
       $state.go('adminSettings');
+    }
+    $scope.goToRequests = function(){
+      $state.go('requests');
     }
 
 

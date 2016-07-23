@@ -122,7 +122,7 @@ angular.module('timePunch').controller('adminScheduleCtrl', function($ionicPopup
 
   $scope.scheduleViewClass = [];
   $scope.scheduleViewClass.push('animated fadeInLeft');
-  
+
 
   $scope.weekButton = false;
   $scope.monthButton = true;

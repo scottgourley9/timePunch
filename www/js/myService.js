@@ -324,6 +324,13 @@ that.postTheLocation = function(locationObj){
     })
   }
 
+  this.getAllRequests = function(){
+    return $http({
+      method: "GET",
+      url: '/api/getRequests'
+    })
+  }
+
 
 
 
